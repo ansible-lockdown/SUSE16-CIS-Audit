@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_4_1_7 }}
+    {{ if eq .Vars.suse16cis_firewall "firewalld" }}
+command:
+  cis_4_1_7:
+    title: 4.1.7 | Ensure firewalld services and ports are configured
+    exit-status: 0
+    exec: "firewall-cmd --list-all"
+    stdout:
+      - '/.+/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.7
+      NIST800-53R5:
+      - NA
+    {{ end }}
+  {{ end }}
+{{ end }}

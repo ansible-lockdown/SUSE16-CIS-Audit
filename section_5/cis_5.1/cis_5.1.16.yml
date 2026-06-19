@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_5_1_16 }}
+file:
+  sshd_authtries:
+    title: 5.1.16 | Ensure sshd MaxAuthTries is configured
+    path: /etc/ssh/sshd_config
+    exists:
+      or:
+      - true
+      - false
+    contents:
+    - '/(?i)maxauthtries [1-4]/'
+    - '!/(?i)maxauthtries ([5-9]|[1-9]{2,})/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.16
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

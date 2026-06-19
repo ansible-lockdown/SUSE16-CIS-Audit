@@ -1,0 +1,73 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_2_3_1_1 }}
+package:
+  {{ if eq .Vars.suse16cis_time_sync_tool "systemd-timesyncd" }}
+  timesync_tool:
+    title: 2.3.1.1 | Ensure chrony is configured | timesyncd
+    name: systemd-timesyncd
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.1.1
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+  {{ end }}
+  {{ if eq .Vars.suse16cis_time_sync_tool "chronyd" }}
+  chrony_tool:
+    title: 2.3.1.1 | Ensure chrony is configured | timesyncd
+    name: chrony
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.1.1
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+  {{ end }}
+  {{ if ne .Vars.suse16cis_time_sync_tool "ntp" }}
+  ntp:
+    title: 2.3.1.1 | Ensure chrony is configured | ntp service
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.1.1
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+  {{ end }}
+  {{ if ne .Vars.suse16cis_time_sync_tool "chronyd" }}
+  chrony:
+    title: 2.3.1.1 | Ensure chrony is configured | chrony service
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.1.1
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+  {{ end }}
+  {{ if ne .Vars.suse16cis_time_sync_tool "systemd-timesyncd" }}
+file:
+  timesync_masked:
+    title: 2.3.1.1 | Ensure chrony is configured | systemd-timesyncd masked
+    path: /etc/systemd/system/systemd-timesyncd.service
+    filetype: symlink
+    linked-to: /dev/null
+    exists: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.1.1
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+    {{ end }}
+  {{ end }}
+{{ end }}

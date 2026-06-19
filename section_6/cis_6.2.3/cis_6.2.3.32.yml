@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_32 }}
+command:
+  cis_6_2_3_32_cnf:
+    title: 6.2.3.32 | Ensure kernel "create_module" and "query_module" loading unloading and modification is collected | config
+    exit-status: 0
+    exec: "grep -E -- 'arch=b64.*create_module.*-k kernel_modules' /etc/audit/rules.d/*.rules"
+    stdout:
+      - '/arch=b64.*create_module.*-k kernel_modules/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.32
+      NIST800-53R5:
+      - AU-12
+      - CM-7
+  cis_6_2_3_32_live:
+    title: 6.2.3.32 | Ensure kernel "create_module" and "query_module" loading unloading and modification is collected | live
+    exit-status: 0
+    exec: "auditctl -l | grep -E -- 'arch=b64.*create_module.*key=kernel_modules'"
+    stdout:
+      - '/arch=b64.*create_module.*key=kernel_modules/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.32
+      NIST800-53R5:
+      - AU-12
+      - CM-7
+  {{ end }}
+{{ end }}

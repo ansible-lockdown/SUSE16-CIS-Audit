@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.run_heavy_tests }}
+    {{ if .Vars.suse16cis_rule_1_2_1_4 }}
+command:
+  repos_configured:
+    title: 1.2.1.4 | Ensure package manager repositories are configured
+    exit-status: 0
+    exec: "zypper repos"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.2.1.4
+      NIST800-53R5: SI-2
+    {{ end }}
+  {{ end }}
+{{ end }}

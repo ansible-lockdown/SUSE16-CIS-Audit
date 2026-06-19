@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_1_2_1_5 }}
+file:
+  zypp_solver_only_requires:
+    title: 1.2.1.5 | Ensure weak dependencies are configured
+    path: /etc/zypp/zypp.conf
+    exists: true
+    contents:
+    - '/^\s*solver\.onlyRequires\s*=\s*true/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.2.1.5
+      NIST800-53R5: CM-7
+  {{ end }}
+{{ end }}

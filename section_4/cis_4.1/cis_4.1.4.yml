@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_4_1_4 }}
+    {{ if eq .Vars.suse16cis_firewall "firewalld" }}
+command:
+  cis_4_1_4:
+    title: 4.1.4 | Ensure firewalld active zone target is configured
+    exit-status: 0
+    exec: "firewall-cmd --list-all-zones | awk '/target:/ { print $2 }' | grep -qvw ACCEPT && echo PASS"
+    stdout:
+      - 'PASS'
+    meta:
+      server: 2
+      workstation: "NA"
+      CIS_ID:
+      - 4.1.4
+      NIST800-53R5:
+      - NA
+    {{ end }}
+  {{ end }}
+{{ end }}

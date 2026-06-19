@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_1_1_1_10 }}
+command:
+  mounted_fstypes:
+    title: 1.1.1.10 | Ensure unused filesystems kernel modules are not available | list mounted types
+    exit-status: 0
+    exec: "findmnt -klo FSTYPE | sort -u"
+    stdout:
+      - '/.+/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.1.10
+      NIST800-53R5: CM-7
+  manual_review:
+    title: 1.1.1.10 | Ensure unused filesystems kernel modules are not available | manual review required
+    exit-status: 0
+    exec: "echo 'Manual review required: verify unused fs kernel modules are blacklisted and not loadable'"
+    stdout:
+      - '/Manual review required/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.1.10
+      NIST800-53R5: CM-7
+  {{ end }}
+{{ end }}

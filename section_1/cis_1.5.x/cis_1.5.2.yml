@@ -1,0 +1,33 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_1_5_2 }}
+kernel-param:
+  fs_protected_symlinks:
+    title: 1.5.2 | Ensure fs.protected_symlinks is configured | running
+    name: fs.protected_symlinks
+    value: '1'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.5.2
+      NIST800-53R5: CM-6
+command:
+  fs_protected_symlinks_conf:
+    title: 1.5.2 | Ensure fs.protected_symlinks is configured | conf
+    exec: grep "fs.protected_symlinks" /etc/sysctl.conf /etc/sysctl.d/* 2>/dev/null
+    exit-status:
+      or:
+      - 0
+      - 2
+    stdout:
+    - '/.*:fs.protected_symlinks\s*=\s*1/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.5.2
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

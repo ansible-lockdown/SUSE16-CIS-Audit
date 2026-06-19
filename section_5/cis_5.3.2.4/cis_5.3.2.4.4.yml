@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_5_3_2_4_4 }}
+command:
+  pam_unix_authtok:
+    title: 5.3.2.4.4 | Ensure pam_unix includes use_authtok
+    exec: grep -P -- '^\h*password\h+([^#\n\r]+)\h+pam_unix\.so\h+([^#\n\r]+\h+)?use_authtok\b' /etc/pam.d/common*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/password:password\s*required\s*pam_unix.so.*use_authtok/'
+    - '/password-pc:password\s*required\s*pam_unix.so.*use_authtok/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.4.4
+      NIST800-53R5: IA-5
+  {{ end }}
+{{ end }}

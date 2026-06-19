@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_28 }}
+command:
+  cis_6_2_3_28_cnf:
+    title: 6.2.3.28 | Ensure successful and unsuccessful attempts to use the usermod command are collected | config
+    exit-status: 0
+    exec: "grep -E -- 'path=/usr/sbin/usermod' /etc/audit/rules.d/*.rules"
+    stdout:
+      - '/path=\/usr\/sbin\/usermod -F perm=x.*-k usermod/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.28
+      NIST800-53R5:
+      - AU-9
+      - AU-12
+  cis_6_2_3_28_live:
+    title: 6.2.3.28 | Ensure successful and unsuccessful attempts to use the usermod command are collected | live
+    exit-status: 0
+    exec: "auditctl -l | grep -E -- 'path=/usr/sbin/usermod'"
+    stdout:
+      - '/path=\/usr\/sbin\/usermod -F perm=x.*key=usermod/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.28
+      NIST800-53R5:
+      - AU-9
+      - AU-12
+  {{ end }}
+{{ end }}

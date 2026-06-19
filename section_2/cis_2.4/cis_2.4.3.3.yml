@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_2_4_3_3 }}
+command:
+  systemd_dropin_dir_perms:
+    title: 2.4.3.3 | Ensure access to systemd timer drop in directories is configured
+    exit-status: 0
+    exec: "find /run/systemd/system /etc/systemd/system /usr/lib/systemd/system -type d \\( ! -user root -o ! -group root -o -perm /022 -o -perm /7000 \\) 2>/dev/null"
+    stdout:
+    - '!/^.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.3.3
+      NIST800-53R5:
+      - AC-6
+      - CM-6
+  {{ end }}
+{{ end }}

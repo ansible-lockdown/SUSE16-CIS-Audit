@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_6_1_1_7 }}
+command:
+  journald_log_access_manual:
+    title: 6.1.1.7 | Ensure journald log file access is configured
+    exec: echo "Manual check - review journald log file permissions to ensure access is restricted per site policy"
+    exit-status: 0
+    stdout: []
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.1.7
+      NIST800-53R5:
+      - AC-3
+      - AU-2
+      - AU-12
+      - MP-2
+      - SI-5
+  {{ end }}
+{{ end }}

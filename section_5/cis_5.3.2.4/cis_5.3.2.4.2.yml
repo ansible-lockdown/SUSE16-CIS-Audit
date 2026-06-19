@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_5_3_2_4_2 }}
+command:
+  pam_unix_remember_root:
+    title: 5.3.2.4.2 | Ensure pam_unix does not include remember
+    exec: grep -Pi '^\h*password\h+([^#\n\r]+\h+)?pam_unix\.so\b' /etc/pam.d/* | grep -Pv '\bremember=\d\b'
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/.*pam_unix.*remember/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.4.2
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

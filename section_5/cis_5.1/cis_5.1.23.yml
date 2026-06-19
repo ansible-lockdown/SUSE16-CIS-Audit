@@ -1,0 +1,18 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_5_1_23 }}
+command:
+  ssh_pq_kex_sntrup761:
+    title: 5.1.23 | Ensure sshd post-quantum cryptography key exchange algorithms are configured | sntrup761
+    exec: sshd -T | awk '($1=="kexalgorithms" && $2~/sntrup761x25519-sha512/) {print $2}'
+    exit-status: 0
+    stdout:
+    - '/sntrup761x25519-sha512/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.23
+  {{ end }}
+{{ end }}

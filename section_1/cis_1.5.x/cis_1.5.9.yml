@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_1_5_9 }}
+file:
+  coredump_conf_d_storage:
+    title: 1.5.9 | Ensure systemd-coredump Storage is configured
+    path: /etc/systemd/coredump.conf.d/60-cis.conf
+    exists: true
+    contents:
+    - '/^\s*Storage\s*=\s*none/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.9
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

@@ -1,0 +1,66 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_6_2_4_1 }}
+command:
+  logfile_configured_login_files:
+    title: 6.2.4.1 | Ensure the audit log file directory mode is configured
+    exec: find /var/log/ -type f -perm /g+x,o+wx -exec ls -l "{}" + | grep -E "[b,u,w]tmp.*|lastllog"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout: ['!/.*/']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.4.1
+      NIST800-53R5:
+      - AU-8
+  logfile_configured_syslog_logs:
+    title: 6.2.4.1 | Ensure the audit log file directory mode is configured
+    exec: find /var/log/ -type f -perm /g+wx,o+wx -exec ls -l "{}" + | grep -E "auth|secure|syslog|messages|journal|auth"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout: ['!/.*/']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.4.1
+      NIST800-53R5:
+      - AU-8
+  logfile_configured_sssd:
+    title: 6.2.4.1 | Ensure the audit log file directory mode is configured
+    exec: find /var/log/ -type f -perm /g+x,o+rwx -exec ls -l "{}" + | grep -Ei "ssd|gdm"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout: ['!/.*/']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.4.1
+      NIST800-53R5:
+      - AU-8
+file:
+  logfile_group_defaults:
+    title: 6.2.4.1 | Ensure the audit log file directory mode is configured
+    path: /etc/audit/auditd.conf
+    exists: true
+    contents:
+    - '/^log_group\s*=\s*(root|audit)/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.4.1
+      NIST800-53R5:
+      - AU-8
+  {{ end }}
+{{ end }}

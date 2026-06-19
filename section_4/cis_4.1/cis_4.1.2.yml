@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_4_1_2 }}
+    {{ if eq .Vars.suse16cis_firewall "firewalld" }}
+command:
+  cis_4_1_2:
+    title: 4.1.2 | Ensure firewalld backend is configured
+    exit-status: 0
+    exec: "grep -Pi -- '^\\h*FirewallBackend\\h*=\\h*nftables\\b' /etc/firewalld/firewalld.conf"
+    stdout:
+      - '/FirewallBackend\s*=\s*nftables/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.2
+      NIST800-53R5:
+      - NA
+    {{ end }}
+  {{ end }}
+{{ end }}

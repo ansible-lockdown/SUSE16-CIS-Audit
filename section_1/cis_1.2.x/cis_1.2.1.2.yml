@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.run_heavy_tests }}
+    {{ if .Vars.suse16cis_rule_1_2_1_2 }}
+command:
+  gpg_check_global:
+    title: 1.2.1.2 | Ensure gpgcheck is configured
+    exit-status: 0
+    exec: "if [ `grep -c -E '^\\s*gpgcheck.*0' /etc/zypp/zypp.conf` -ge 1 ]; then echo FAIL; elif [ `grep -c -E '^\\s*gpgcheck.*1' /etc/zypp/zypp.conf` -ge 1 ]; then echo Passed_Check;fi"
+    timeout: {{ .Vars.timeout_ms }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.2.1.2
+      NIST800-53R5: SI-2
+      {{ end }}
+  {{ end }}
+{{ end }}

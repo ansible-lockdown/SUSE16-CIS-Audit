@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.suse16cis_gui }}
+  {{ if .Vars.suse16cis_desktop_required }}
+    {{ if .Vars.suse16cis_level_1 }}
+      {{ if .Vars.suse16cis_rule_1_8_5 }}
+file:
+  00-screensaver_lock:
+    title: 1.8.5 | Ensure GDM autorun-never is configured
+    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/locks/00-screensaver_lock
+    exists: true
+    contents:
+    - '^\/org\/gnome\/desktop\/session\/idle-delay/'
+    - '^/\/org\/gnome\/desktop\/screensaver\/lock-delay/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.5
+       {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

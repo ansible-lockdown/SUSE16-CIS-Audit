@@ -1,0 +1,30 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_1_5_6 }}
+kernel-param:
+  kernel_randomize_va_space_running:
+    title: 1.5.6 | Ensure kernel.randomize_va_space is configured | running
+    name: kernel.randomize_va_space
+    value: '2'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.6
+      NIST800-53R5: SI-16
+command:
+  kernel_randomize_va_space_conf:
+    title: 1.5.6 | Ensure kernel.randomize_va_space is configured | conf
+    exit-status: 0
+    exec: 'grep "kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/*'
+    stdout:
+    - '/^*.conf:kernel\.randomize_va_space\s*=\s*2/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.6
+      NIST800-53R5: SI-16
+  {{ end }}
+{{ end }}

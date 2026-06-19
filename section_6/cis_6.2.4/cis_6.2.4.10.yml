@@ -1,0 +1,67 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_4_10 }}
+file:
+  /sbin/auditctl_group:
+    title: 6.2.4.10 | Ensure audit tools group owner is configured | /sbin/auditctl
+    path: /sbin/auditctl
+    exists: true
+    group: root
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.10
+      NIST800-53R5:
+      - AU-9
+  /sbin/aureport_group:
+    title: 6.2.4.10 | Ensure audit tools group owner is configured | /sbin/aureport
+    path: /sbin/aureport
+    exists: true
+    group: root
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.10
+      NIST800-53R5:
+      - AU-9
+  /sbin/ausearch_group:
+    title: 6.2.4.10 | Ensure audit tools group owner is configured | /sbin/ausearch
+    path: /sbin/ausearch
+    exists: true
+    group: root
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.10
+      NIST800-53R5:
+      - AU-9
+  /sbin/auditd_group:
+    title: 6.2.4.10 | Ensure audit tools group owner is configured | /sbin/auditd
+    path: /sbin/auditd
+    exists: true
+    group: root
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.10
+      NIST800-53R5:
+      - AU-9
+  /sbin/augenrules_group:
+    title: 6.2.4.10 | Ensure audit tools group owner is configured | /sbin/augenrules
+    path: /sbin/augenrules
+    exists: true
+    group: root
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.10
+      NIST800-53R5:
+      - AU-9
+  {{ end }}
+{{ end }}

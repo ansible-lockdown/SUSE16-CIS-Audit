@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_27 }}
+command:
+  cis_6_2_3_27_cnf:
+    title: 6.2.3.27 | Ensure successful and unsuccessful attempts to use the chacl command are collected | config
+    exit-status: 0
+    exec: "grep -E -- 'path=/usr/bin/chacl' /etc/audit/rules.d/*.rules"
+    stdout:
+      - '/path=\/usr\/bin\/chacl -F perm=x.*-k perm_chng/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.27
+      NIST800-53R5:
+      - AU-9
+      - AU-12
+  cis_6_2_3_27_live:
+    title: 6.2.3.27 | Ensure successful and unsuccessful attempts to use the chacl command are collected | live
+    exit-status: 0
+    exec: "auditctl -l | grep -E -- 'path=/usr/bin/chacl'"
+    stdout:
+      - '/path=\/usr\/bin\/chacl -F perm=x.*key=perm_chng/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.27
+      NIST800-53R5:
+      - AU-9
+      - AU-12
+  {{ end }}
+{{ end }}

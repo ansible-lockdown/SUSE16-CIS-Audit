@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_6_1_2_4 }}
+command:
+  rsyslog_filecreatemode:
+    title: 6.1.2.4 | Ensure rsyslog log file creation mode is configured
+    exec: grep -P '^\$FileCreateMode' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+    exit-status:
+      or: [0, 1, 2]
+    stdout:
+    - '/^\$FileCreateMode\s+0?640/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.4
+      NIST800-53R5:
+      - AC-3
+      - AC-6
+      - MP-2
+  {{ end }}
+{{ end }}

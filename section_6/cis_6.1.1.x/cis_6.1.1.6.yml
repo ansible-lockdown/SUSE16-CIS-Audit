@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_6_1_1_6 }}
+command:
+  journald_log_rotation_manual:
+    title: 6.1.1.6 | Ensure journald log file rotation is configured
+    exec: echo "Manual check - review journald log rotation settings in /etc/systemd/journald.conf and drop-in files"
+    exit-status: 0
+    stdout: []
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.1.6
+      NIST800-53R5:
+      - AU-2
+      - AU-7
+      - AU-12
+  {{ end }}
+{{ end }}

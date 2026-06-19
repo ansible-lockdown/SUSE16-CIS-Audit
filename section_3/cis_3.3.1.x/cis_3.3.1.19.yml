@@ -1,0 +1,18 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_3_3_1_19 }}
+kernel-param:
+  net_ipv4_conf_lo_route_localnet:
+    title: 3.3.1.19 | Ensure net.ipv4.conf.lo.route_localnet is configured
+    name: net.ipv4.conf.lo.route_localnet
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1.19
+      NIST800-53R5:
+      - CM-6
+  {{ end }}
+{{ end }}

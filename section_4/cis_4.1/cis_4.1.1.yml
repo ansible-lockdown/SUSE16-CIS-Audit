@@ -1,0 +1,112 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_4_1_1 }}
+    {{ if eq .Vars.suse16cis_firewall "nftables" }}
+file:
+  firewalld_masked:
+    title: 4.1.1 | Ensure firewalld is installed | firewalld masked
+    path: /etc/systemd/system/firewalld.service
+    filetype: symlink
+    linked-to: /dev/null
+    exists: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      NIST800-53R5:
+      - NA
+service:
+  firewalld_stopped:
+    title: 4.1.1 | Ensure firewalld is installed | firewalld service stopped
+    name: firewalld
+    enabled: false
+    running: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      NIST800-53R5:
+      - NA
+  nftables_running:
+    title: 4.1.1 | Ensure firewalld is installed | nftables running
+    name: nftables
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      NIST800-53R5:
+      - NA
+  iptables_stopped:
+    title: 4.1.1 | Ensure firewalld is installed | iptables stopped
+    name: iptables
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      NIST800-53R5:
+      - NA
+  {{ end }}
+  {{ if eq .Vars.suse16cis_firewall "firewalld" }}
+file:
+  nftables_masked:
+    title: 4.1.1 | Ensure firewalld is installed | nftables masked
+    path: /etc/systemd/system/nftables.service
+    filetype: symlink
+    linked-to: /dev/null
+    exists: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      NIST800-53R5:
+      - NA
+service:
+  firewalld_started:
+    title: 4.1.1 | Ensure firewalld is installed | firewalld running and enabled
+    name: firewalld
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      NIST800-53R5:
+      - NA
+  nftables_stopped:
+    title: 4.1.1 | Ensure firewalld is installed | nftables stopped
+    name: nftables
+    enabled: false
+    running: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      NIST800-53R5:
+      - NA
+  iptables_stopped:
+    title: 4.1.1 | Ensure firewalld is installed | iptables stopped
+    name: iptables
+    enabled: false
+    running: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.1
+      NIST800-53R5:
+      - NA
+    {{ end }}
+  {{ end }}
+{{ end }}

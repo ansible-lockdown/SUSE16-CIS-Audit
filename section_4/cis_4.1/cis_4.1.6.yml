@@ -1,0 +1,37 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_4_1_6 }}
+    {{ if eq .Vars.suse16cis_firewall "firewalld" }}
+command:
+  cis_4_1_6_ipv4:
+    title: 4.1.6 | Ensure firewalld loopback source address traffic is configured
+    exit-status: 0
+    exec: firewall-cmd --zone {{ .Vars.suse16cis_loopback_zone }} --list-rich-rules
+    stdout:
+      - 'source address="127.0.0.1" destination NOT address="127.0.0.1" drop'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.6
+      NIST800-53R5:
+      - NA
+  {{ if .Vars.suse16cis_ipv6_required }}
+    cis_4_1_6_ipv4:
+    title: 4.1.6 | Ensure firewalld loopback source address traffic is configured
+    exit-status: 0
+    exec: firewall-cmd --zone {{ .Vars.suse16cis_loopback_zone }} --list-rich-rules
+    stdout:
+      - 'source address="::1" destination NOT address="::1" drop'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.6
+      NIST800-53R5:
+      - NA
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_29 }}
+command:
+  cis_6_2_3_29_cnf:
+    title: 6.2.3.29 | Ensure kernel module loading unloading and modification is collected | config
+    exit-status: 0
+    exec: "grep -E -- 'path=/usr/bin/kmod' /etc/audit/rules.d/*.rules"
+    stdout:
+      - '/path=\/usr\/bin\/kmod -F perm=x.*-k kernel_modules/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.29
+      NIST800-53R5:
+      - AU-12
+      - CM-7
+  cis_6_2_3_29_live:
+    title: 6.2.3.29 | Ensure kernel module loading unloading and modification is collected | live
+    exit-status: 0
+    exec: "auditctl -l | grep -E -- 'path=/usr/bin/kmod'"
+    stdout:
+      - '/path=\/usr\/bin\/kmod -F perm=x.*key=kernel_modules/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.29
+      NIST800-53R5:
+      - AU-12
+      - CM-7
+  {{ end }}
+{{ end }}

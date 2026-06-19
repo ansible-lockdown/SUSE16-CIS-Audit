@@ -1,0 +1,34 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_1_5_4 }}
+kernel-param:
+  kernel_dmesg_restrict_running:
+    title: 1.5.4 | Ensure kernel.dmesg_restrict is configured | running
+    name: kernel.dmesg_restrict
+    value: '1'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.4
+      NIST800-53R5:
+      - SC-2
+      - SC-4
+command:
+  kernel_dmesg_restrict_conf:
+    title: 1.5.4 | Ensure kernel.dmesg_restrict is configured | conf
+    exit-status: 0
+    exec: 'grep "kernel\.dmesg_restrict" /etc/sysctl.conf /etc/sysctl.d/*'
+    stdout:
+    - '/^*.conf:kernel\.dmesg_restrict\s*=\s*1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.4
+      NIST800-53R5:
+      - SC-2
+      - SC-4
+  {{ end }}
+{{ end }}

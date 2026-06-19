@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_4_5 }}
+command:
+  cis_6_2_4_5:
+    title: 6.2.4.5 | Ensure audit configuration files mode is configured | files with excess permissions
+    exit-status:
+      or:
+      - 0
+      - 1
+    exec: "find /etc/audit/ -type f \\( -name '*.conf' -o -name '*.rules' \\) -perm /0137 2>/dev/null"
+    stdout:
+      - '!/.+/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.5
+      NIST800-53R5:
+      - AU-9
+  {{ end }}
+{{ end }}

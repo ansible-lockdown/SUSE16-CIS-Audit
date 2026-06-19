@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_7_2_10 }}
+command:
+  cis_7_2_10:
+    title: 7.2.10 | Ensure no passwords are stored in /etc/group | groups with passwords
+    exit-status:
+      or:
+      - 0
+      - 1
+    exec: "awk -F: '($2 != \"x\" && $2 != \"!\" && $2 != \"\") { print $1 }' /etc/group"
+    stdout:
+      - '!/.+/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.10
+  {{ end }}
+{{ end }}

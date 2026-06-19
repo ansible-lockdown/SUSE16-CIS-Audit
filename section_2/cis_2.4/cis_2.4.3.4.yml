@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_2_4_3_4 }}
+command:
+  systemd_user_linger:
+    title: 2.4.3.4 | Ensure systemd user timers disable-linger is configured
+    exit-status: 0
+    exec: "loginctl list-users --no-legend | awk '$1 != 0 {print $2}' | xargs -r -I{} sh -c 'loginctl show-user {} --property=Linger | grep -q \"Linger=yes\" && echo {} || true' 2>/dev/null || true"
+    stdout:
+    - '!/^.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.3.4
+      NIST800-53R5:
+      - AC-6
+      - CM-7
+  {{ end }}
+{{ end }}

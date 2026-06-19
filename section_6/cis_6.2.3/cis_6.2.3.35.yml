@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_35 }}
+# Manual: verify the running auditd configuration matches the on-disk configuration.
+# Compare: auditctl -l against /etc/audit/rules.d/*.rules after each rule change.
+command:
+  cis_6_2_3_35:
+    title: 6.2.3.35 | Ensure the running and on disk configuration is the same | manual review required
+    exit-status: 0
+    exec: "echo 'Manual review required: compare auditctl -l output with /etc/audit/rules.d/*.rules'"
+    stdout:
+      - '/Manual review required/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.35
+      NIST800-53R5:
+      - AU-12
+  {{ end }}
+{{ end }}

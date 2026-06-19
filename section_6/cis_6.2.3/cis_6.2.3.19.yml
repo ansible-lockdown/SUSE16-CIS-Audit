@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_19 }}
+command:
+  cis_6_2_3_19_cnf:
+    title: 6.2.3.19 | Ensure successful file system mounts are collected | config
+    exit-status: 0
+    exec: "grep -E -- 'arch=b64.*mount.*-k mounts' /etc/audit/rules.d/*.rules"
+    stdout:
+      - '/arch=b64.*mount.*-k mounts/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.19
+      NIST800-53R5:
+      - AU-12
+      - CM-6
+  cis_6_2_3_19_live:
+    title: 6.2.3.19 | Ensure successful file system mounts are collected | live
+    exit-status: 0
+    exec: "auditctl -l | grep -E -- 'arch=b64.*mount.*key=mounts'"
+    stdout:
+      - '/arch=b64.*mount.*key=mounts/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.19
+      NIST800-53R5:
+      - AU-12
+      - CM-6
+  {{ end }}
+{{ end }}

@@ -1,0 +1,17 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_1_2_11 }}
+command:
+  rsyslog_tls_cert_manual:
+    title: 6.1.2.11 | Ensure rsyslog CA certificates are configured
+    exec: echo "Manual check - verify CA certificate, client certificate, and key files are configured in rsyslog.conf per site policy"
+    exit-status: 0
+    stdout: []
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.1.2.11
+  {{ end }}
+{{ end }}

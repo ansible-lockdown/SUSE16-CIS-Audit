@@ -1,0 +1,33 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_1_3_1_5 }}
+file:
+  selinux_config_not_disabled:
+    title: 1.3.1.5 | Ensure the SELinux mode is not disabled | config
+    path: /etc/selinux/config
+    exists: true
+    contents:
+    - '/^SELINUX=(enforcing|permissive)/'
+    - '!/^SELINUX=disabled/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.3.1.5
+      NIST800-53R5: CM-7
+command:
+  selinux_running_not_disabled:
+    title: 1.3.1.5 | Ensure the SELinux mode is not disabled | running mode
+    exit-status: 0
+    exec: "getenforce"
+    stdout:
+    - '/^(Enforcing|Permissive)$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.3.1.5
+      NIST800-53R5: CM-7
+  {{ end }}
+{{ end }}

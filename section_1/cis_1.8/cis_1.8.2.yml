@@ -1,0 +1,38 @@
+---
+
+{{ if .Vars.suse16cis_gui }}
+  {{ if .Vars.suse16cis_desktop_required }}
+    {{ if .Vars.suse16cis_level_1 }}
+      {{ if .Vars.suse16cis_rule_1_8_2 }}
+file:
+  gdm_profile_banner:
+    title: 1.8.2 | Ensure GDM disable-user-list is configured
+    path: /etc/dconf/profile/gdm
+    exists: true
+    contents:
+    - '/^user-db:user/'
+    - '/^system-db:gdm/'
+    - '/^file-db:\/usr\/share\/gdm\/greeter-dconf-defaults/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.2
+  01_banner_message:
+    title: 1.8.2 | Ensure GDM disable-user-list is configured
+    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/01-banner-message
+    exists: true
+    contents:
+    - '/\[org/gnome/login-screen\]/'
+    - '/\s*banner-message-enable=true/'
+    - '!/banner-message-enable=false/'
+    - '/banner-message-text={{ .Vars.suse16cis_warning_banner }}/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.2
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

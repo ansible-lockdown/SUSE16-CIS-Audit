@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_1_2_10 }}
+command:
+  rsyslog_gtls_configured:
+    title: 6.1.2.10 | Ensure rsyslog forwarding uses gtls
+    exec: grep -P '^\$DefaultNetstreamDriver\s+gtls' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+    exit-status:
+      or: [0, 1, 2]
+    stdout:
+    - '/^\$DefaultNetstreamDriver\s+gtls/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.1.2.10
+  {{ end }}
+{{ end }}

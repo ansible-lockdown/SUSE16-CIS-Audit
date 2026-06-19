@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_1_7_9 }}
+command:
+  sshd_banner_file_perms:
+    title: 1.7.9 | Ensure access to sshd warning banner is configured
+    exit-status: 0
+    exec: "stat -Lc '%a %U %G' $(sshd -T 2>/dev/null | awk '/^banner /{print $2}')"
+    stdout:
+    - '/^[0-6][04][04] root root$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.9
+      NIST800-53R5: []
+  {{ end }}
+{{ end }}

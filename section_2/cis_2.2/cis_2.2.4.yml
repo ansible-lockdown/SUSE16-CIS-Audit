@@ -1,0 +1,20 @@
+---
+
+{{ if not .Vars.suse16cis_telnet_required }}
+  {{ if .Vars.suse16cis_level_1 }}
+    {{ if .Vars.suse16cis_rule_2_2_4 }}
+package:
+  telnet:
+    title: 2.2.4 | Ensure telnet client is not installed | telnet
+    installed: false
+    name: telnet
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.2.4
+      NIST800-53R5:
+      - CM-7
+      - CM-11
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_4_8 }}
+file:
+  {{- range mkSlice "/sbin/auditctl" "/sbin/aureport" "/sbin/ausearch" "/sbin/auditd" "/sbin/augenrules"}}
+  {{ . }}:
+    title: 6.2.4.8 | Ensure audit tools mode is configured
+    exists: true
+    mode:
+      or:
+      - "0755"
+      - "0750"
+      - "0700"
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.8
+      NIST800-53R5:
+      - AU-9
+    {{ end }}
+  {{ end }}
+{{ end }}

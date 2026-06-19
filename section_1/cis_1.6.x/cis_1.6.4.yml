@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_1_6_4 }}
+file:
+  crypto_policies_no_sha1_current:
+    title: 1.6.4 | Ensure system wide crypto policy disables sha1 hash and signature support
+    path: /etc/crypto-policies/state/CURRENT.pol
+    exists: true
+    contents:
+    - '/^sha1_in_certs\s*=\s*0/'
+    - '!/^(hash|sign)\s*=\s*SHA1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.6.4
+      NIST800-53R5: SC-8
+  {{ end }}
+{{ end }}

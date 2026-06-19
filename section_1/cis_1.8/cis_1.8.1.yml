@@ -1,0 +1,21 @@
+---
+
+{{ if not .Vars.suse16cis_gui }}
+  {{ if not .Vars.suse16cis_desktop_required }}
+    {{ if .Vars.suse16cis_level_2 }}
+      {{ if .Vars.suse16cis_rule_1_8_1 }}
+package:
+  gdm_removed:
+    title: 1.8.1 | Ensure GDM login banner is configured
+    installed: false
+    name: gdm
+    meta:
+      server: 2
+      workstation: NA
+      CIS_ID:
+      - 1.8.1
+      NIST800-53R5: NA
+      {{ end}}
+    {{ end }}
+  {{ end }}
+{{ end }}

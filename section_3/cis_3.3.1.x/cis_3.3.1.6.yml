@@ -1,0 +1,18 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_3_3_1_6 }}
+kernel-param:
+  net_ipv4_icmp_ignore_bogus_error_responses:
+    title: 3.3.1.6 | Ensure net.ipv4.icmp_ignore_bogus_error_responses is configured
+    name: net.ipv4.icmp_ignore_bogus_error_responses
+    value: '1'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1.6
+      NIST800-53R5:
+      - CM-6
+  {{ end }}
+{{ end }}

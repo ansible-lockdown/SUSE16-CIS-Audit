@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_14 }}
+command:
+  cis_6_2_3_14_cnf:
+    title: 6.2.3.14 | Ensure events that modify /etc/security/opasswd are collected | config
+    exit-status: 0
+    exec: "grep -E -- 'path=/etc/security/opasswd' /etc/audit/rules.d/*.rules"
+    stdout:
+      - '/path=\/etc\/security\/opasswd -F perm=wa -k identity/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.14
+      NIST800-53R5:
+      - AU-9
+      - AU-12
+  cis_6_2_3_14_live:
+    title: 6.2.3.14 | Ensure events that modify /etc/security/opasswd are collected | live
+    exit-status: 0
+    exec: "auditctl -l | grep -E -- 'path=/etc/security/opasswd'"
+    stdout:
+      - '/path=\/etc\/security\/opasswd -F perm=wa -F key=identity/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.14
+      NIST800-53R5:
+      - AU-9
+      - AU-12
+  {{ end }}
+{{ end }}

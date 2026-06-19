@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_24 }}
+command:
+  cis_6_2_3_24_cnf:
+    title: 6.2.3.24 | Ensure events that modify the system's Mandatory Access Controls are collected | config
+    exit-status: 0
+    exec: "grep -E -- 'path=/etc/selinux' /etc/audit/rules.d/*.rules"
+    stdout:
+      - '/path=\/etc\/selinux -F perm=wa -k MAC-policy/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.24
+      NIST800-53R5:
+      - AU-12
+      - CM-6
+  cis_6_2_3_24_live:
+    title: 6.2.3.24 | Ensure events that modify the system's Mandatory Access Controls are collected | live
+    exit-status: 0
+    exec: "auditctl -l | grep -E -- 'path=/etc/selinux'"
+    stdout:
+      - '/path=\/etc\/selinux -F perm=wa -F key=MAC-policy/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.24
+      NIST800-53R5:
+      - AU-12
+      - CM-6
+  {{ end }}
+{{ end }}

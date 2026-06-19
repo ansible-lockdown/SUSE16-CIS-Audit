@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_3 }}
+command:
+  cis_6_2_3_3_cnf:
+    title: 6.2.3.3 | Ensure events that modify the sudo log file are collected | config
+    exit-status: 0
+    exec: "grep -E -- 'sudo_log_file' /etc/audit/rules.d/*.rules"
+    stdout:
+      - '/path=\/var\/log\/sudo\.log -F perm=wa -k sudo_log_file/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.3
+  cis_6_2_3_3_live:
+    title: 6.2.3.3 | Ensure events that modify the sudo log file are collected | live
+    exit-status: 0
+    exec: "auditctl -l | grep sudo_log_file"
+    stdout:
+      - '/path=\/var\/log\/sudo\.log -F perm=wa -F key=sudo_log_file/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.3
+  {{ end }}
+{{ end }}

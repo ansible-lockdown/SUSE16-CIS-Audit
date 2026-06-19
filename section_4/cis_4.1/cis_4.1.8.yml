@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_4_1_8 }}
+    {{ if eq .Vars.suse16cis_firewall "firewalld" }}
+command:
+  cis_4_1_8:
+    title: 4.1.8 | Configure firewall to drop all traffic
+    exit-status: 0
+    exec: "firewall-cmd --get-default-zone"
+    stdout:
+      - 'drop'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.8
+      NIST800-53R5:
+      - NA
+    {{ end }}
+  {{ end }}
+{{ end }}

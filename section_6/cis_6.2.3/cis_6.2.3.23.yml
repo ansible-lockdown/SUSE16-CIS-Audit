@@ -1,0 +1,33 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_23 }}
+command:
+  cis_6_2_3_23_cnf:
+    title: 6.2.3.23 | Ensure rename file deletion events by users are collected | config
+    exit-status: 0
+    exec: "grep -E -- 'arch=b64.*rename.*-k delete' /etc/audit/rules.d/*.rules"
+    stdout:
+      - '/arch=b64.*rename.*-k delete/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.23
+      NIST800-53R5:
+      - AU-12
+  cis_6_2_3_23_live:
+    title: 6.2.3.23 | Ensure rename file deletion events by users are collected | live
+    exit-status: 0
+    exec: "auditctl -l | grep -E -- 'arch=b64.*rename.*key=delete'"
+    stdout:
+      - '/arch=b64.*rename.*key=delete/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.23
+      NIST800-53R5:
+      - AU-12
+  {{ end }}
+{{ end }}

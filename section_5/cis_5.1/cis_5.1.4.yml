@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_5_1_4 }}
+command:
+  sshd_access_limited:
+    title: 5.1.4 | Ensure sshd access is configured | config
+    exec: grep -Ei "^(Allow|Deny)(Users|Groups)" /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - "/(?i)(allowusers {{ .Vars.suse16cis_sshd_allow_users }}|allowgroups {{ .Vars.suse16cis_sshd_allow_groups }}|denyusers {{ .Vars.suse16cis_sshd_deny_users }}|denygroups {{ .Vars.suse16cis_sshd_deny_groups }} )/"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.4
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_6_3_2 }}
+    {{ if eq .Vars.suse16cis_aide_scan "cron" }}
+file:
+  /etc/cron.d/{{ .Vars.suse16cis_aide_cron_file }}:
+    title: 6.3.2 | Ensure filesystem integrity is regularly checked | cron
+    exists: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.3.2
+      NIST800-53R5:
+      - AU-2
+    {{ end }}
+    {{ if eq .Vars.suse16cis_aide_scan "timer" }}
+command:
+  aide_timer_enabled:
+    title: 6.3.2 | Ensure filesystem integrity is regularly checked | timer
+    exec: systemctl is-enabled aidecheck.timer
+    exit-status: 0
+    stdout:
+    - '/^enabled/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.3.2
+      NIST800-53R5:
+      - AU-2
+    {{ end }}
+  {{ end }}
+{{ end }}

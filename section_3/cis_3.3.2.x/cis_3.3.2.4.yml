@@ -1,0 +1,18 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_3_3_2_4 }}
+kernel-param:
+  net_ipv6_conf_default_accept_redirects:
+    title: 3.3.2.4 | Ensure net.ipv6.conf.default.accept_redirects is configured
+    name: net.ipv6.conf.default.accept_redirects
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2.4
+      NIST800-53R5:
+      - CM-6
+  {{ end }}
+{{ end }}

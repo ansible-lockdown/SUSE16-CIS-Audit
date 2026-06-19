@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_5_1_24 }}
+command:
+  ssh_listen_address:
+    title: 5.1.24 | Ensure sshd ListenAddress is configured
+    exit-status: 0
+    exec: "sshd -T | grep listenaddress"
+    stdout:
+      - '!/listenaddress 0\.0\.0\.0/'
+      - '!/listenaddress ::/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 5.1.24
+      NIST800-53R5:
+      - NA
+  {{ end }}
+{{ end }}

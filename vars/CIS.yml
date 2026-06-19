@@ -1,0 +1,913 @@
+---
+
+## metadata for Audit benchmark
+benchmark_version: 'v1.0.0'
+
+
+#  timeout for each command to run where set - default = 10seconds/10000ms
+timeout_ms: 120000
+
+suse16cis_section1: true
+suse16cis_section2: true
+suse16cis_section3: true
+suse16cis_section4: true
+suse16cis_section5: true
+suse16cis_section6: true
+suse16cis_section7: true
+
+suse16cis_level_1: true
+suse16cis_level_2: true
+
+
+#  to enable rules that may have IO impact on a system e.g. full filesystem scans or CPU heavy
+run_heavy_tests: true
+
+#  True is BIOS based system else set to false
+suse16cis_legacy_boot: true
+
+##
+## Rule-specific switches
+##
+## Use the switches below to disable specific rules independently of the chosen profile
+##
+
+## Section 1 Fixes
+# Section 1 is Initial setup (FileSystem Configuration, Configure Software Updates, Filesystem Integrity Checking, Secure Boot Settings,
+# Additional Process Hardening, Mandatory Access Control, Command Line Warning Banners, and GNOME Display Manager)
+
+# 1.1 Filesystems
+# 1.1.1 Configure Filesystem Kernel Modules
+suse16cis_rule_1_1_1_1: true
+suse16cis_rule_1_1_1_2: true
+suse16cis_rule_1_1_1_3: true
+suse16cis_rule_1_1_1_4: true
+suse16cis_rule_1_1_1_5: true
+suse16cis_rule_1_1_1_6: true
+suse16cis_rule_1_1_1_7: true
+suse16cis_rule_1_1_1_8: true
+suse16cis_rule_1_1_1_9: true
+suse16cis_rule_1_1_1_10: true
+
+# 1.1.2 Configure Filesystem Partitions
+# /tmp
+suse16cis_rule_1_1_2_1_1: true
+suse16cis_rule_1_1_2_1_2: true
+suse16cis_rule_1_1_2_1_3: true
+suse16cis_rule_1_1_2_1_4: true
+
+# /dev/shm
+suse16cis_rule_1_1_2_2_1: true
+suse16cis_rule_1_1_2_2_2: true
+suse16cis_rule_1_1_2_2_3: true
+suse16cis_rule_1_1_2_2_4: true
+
+# /home
+suse16cis_rule_1_1_2_3_1: true
+suse16cis_rule_1_1_2_3_2: true
+suse16cis_rule_1_1_2_3_3: true
+
+# /var
+suse16cis_rule_1_1_2_4_1: true
+suse16cis_rule_1_1_2_4_2: true
+suse16cis_rule_1_1_2_4_3: true
+
+# /var/tmp
+suse16cis_rule_1_1_2_5_1: true
+suse16cis_rule_1_1_2_5_2: true
+suse16cis_rule_1_1_2_5_3: true
+suse16cis_rule_1_1_2_5_4: true
+
+# /var/log
+suse16cis_rule_1_1_2_6_1: true
+suse16cis_rule_1_1_2_6_2: true
+suse16cis_rule_1_1_2_6_3: true
+suse16cis_rule_1_1_2_6_4: true
+
+# /var/log/audit
+suse16cis_rule_1_1_2_7_1: true
+suse16cis_rule_1_1_2_7_2: true
+suse16cis_rule_1_1_2_7_3: true
+suse16cis_rule_1_1_2_7_4: true
+
+# 1.2 Package mgmt
+# 1.2.1 Configure Package repositories
+suse16cis_rule_1_2_1_1: true
+suse16cis_rule_1_2_1_2: true
+suse16cis_rule_1_2_1_3: true
+suse16cis_rule_1_2_1_4: true
+suse16cis_rule_1_2_1_5: false
+# 1.2.2 Configure Package updates
+suse16cis_rule_1_2_2_1: true
+
+# 1.3 Mandatory Access Control
+## 1.3.1 Configure SELinux
+suse16cis_rule_1_3_1_1: true
+suse16cis_rule_1_3_1_2: true
+suse16cis_rule_1_3_1_3: true
+suse16cis_rule_1_3_1_4: true
+suse16cis_rule_1_3_1_5: true
+suse16cis_rule_1_3_1_6: false
+suse16cis_rule_1_3_1_7: true
+suse16cis_rule_1_3_1_8: true
+
+# 1.4 Configure Bootloader
+suse16cis_rule_1_4_1: true
+suse16cis_rule_1_4_2: true
+
+# 1.5 Configure additional Process Hardening
+suse16cis_rule_1_5_1: true
+suse16cis_rule_1_5_2: true
+suse16cis_rule_1_5_3: true
+suse16cis_rule_1_5_4: true
+suse16cis_rule_1_5_5: true
+suse16cis_rule_1_5_6: true
+suse16cis_rule_1_5_7: true
+suse16cis_rule_1_5_8: true
+suse16cis_rule_1_5_9: true
+suse16cis_kernel_kptr_restrict: 1
+suse16cis_kernel_yama_ptrace_scope: 1
+
+# 1.6 Configure System Wide cryptopolicy
+suse16cis_rule_1_6_1: true
+suse16cis_rule_1_6_2: true
+suse16cis_rule_1_6_3: true
+suse16cis_rule_1_6_4: true
+suse16cis_rule_1_6_5: true
+suse16cis_rule_1_6_6: true
+suse16cis_rule_1_6_7: true
+
+# 1.7 Configure Command Line Warning Banners
+suse16cis_rule_1_7_1: true
+suse16cis_rule_1_7_2: true
+suse16cis_rule_1_7_3: true
+suse16cis_rule_1_7_4: true
+suse16cis_rule_1_7_5: true
+suse16cis_rule_1_7_6: true
+suse16cis_rule_1_7_7: true
+suse16cis_rule_1_7_8: true
+suse16cis_rule_1_7_9: true
+
+# 1.7 Configure GNOME Display Manager
+suse16cis_rule_1_8_1: true
+suse16cis_rule_1_8_2: true
+suse16cis_rule_1_8_3: true
+suse16cis_rule_1_8_4: true
+suse16cis_rule_1_8_5: true
+suse16cis_rule_1_8_6: true
+suse16cis_rule_1_8_7: true
+
+## Section 2 Fixes
+# Section 2 is Services (Special Purpose Services, and service clients)
+
+# 2.1 Configure Server Services
+suse16cis_rule_2_1_1: true
+suse16cis_rule_2_1_2: true
+suse16cis_rule_2_1_3: true
+suse16cis_rule_2_1_4: true
+suse16cis_rule_2_1_5: true
+suse16cis_rule_2_1_6: true
+suse16cis_rule_2_1_7: true
+suse16cis_rule_2_1_8: true
+suse16cis_rule_2_1_9: true
+suse16cis_rule_2_1_10: true
+suse16cis_rule_2_1_11: true
+suse16cis_rule_2_1_12: true
+suse16cis_rule_2_1_13: true
+suse16cis_rule_2_1_14: true
+suse16cis_rule_2_1_15: true
+suse16cis_rule_2_1_16: true
+suse16cis_rule_2_1_17: true
+suse16cis_rule_2_1_18: true
+suse16cis_rule_2_1_19: true
+suse16cis_rule_2_1_20: true
+suse16cis_rule_2_1_21: true
+suse16cis_rule_2_1_22: true
+
+# 2.2 Configure client services
+suse16cis_rule_2_2_1: true
+suse16cis_rule_2_2_2: true
+suse16cis_rule_2_2_3: true
+suse16cis_rule_2_2_4: true
+suse16cis_rule_2_2_5: true
+
+# Ensure time synchronization is in use
+suse16cis_rule_2_3_1_1: true
+suse16cis_rule_2_3_1_2: true
+# Configure systemd-timesyncd
+# Configure Chrony
+
+# 2.4 Job Schedulers
+# 2.4.1 Configure Cron
+suse16cis_rule_2_4_1_1: true
+suse16cis_rule_2_4_1_2: true
+suse16cis_rule_2_4_1_3: true
+suse16cis_rule_2_4_1_4: true
+suse16cis_rule_2_4_1_5: true
+suse16cis_rule_2_4_1_6: true
+suse16cis_rule_2_4_1_7: true
+suse16cis_rule_2_4_1_8: true
+suse16cis_rule_2_4_1_9: true
+# Configure At
+suse16cis_rule_2_4_2_1: true
+
+# 2.4.3 Configure Systemd Timer Units
+suse16cis_rule_2_4_3_1: true
+suse16cis_rule_2_4_3_2: true
+suse16cis_rule_2_4_3_3: true
+suse16cis_rule_2_4_3_4: true
+
+## Section 3 Network Configuration
+# 3.1 Configure Network Devices
+suse16cis_rule_3_1_1: true
+suse16cis_rule_3_1_2: true
+suse16cis_rule_3_1_3: true
+
+# 3.2 Configure Network Kernel Modules (Host Only)
+suse16cis_rule_3_2_1: true
+suse16cis_rule_3_2_2: true
+suse16cis_rule_3_2_3: true
+suse16cis_rule_3_2_4: true
+suse16cis_rule_3_2_5: true
+suse16cis_rule_3_2_6: true
+
+# 3.3 Configure Network Kernel Parameters (Host and Router)
+suse16cis_rule_3_3_1_1: true
+suse16cis_rule_3_3_1_2: true
+suse16cis_rule_3_3_1_3: true
+suse16cis_rule_3_3_1_4: true
+suse16cis_rule_3_3_1_5: true
+suse16cis_rule_3_3_1_6: true
+suse16cis_rule_3_3_1_7: true
+suse16cis_rule_3_3_1_8: true
+suse16cis_rule_3_3_1_9: true
+suse16cis_rule_3_3_1_10: true
+suse16cis_rule_3_3_1_11: true
+suse16cis_rule_3_3_1_12: true
+suse16cis_rule_3_3_1_13: true
+suse16cis_rule_3_3_1_14: true
+suse16cis_rule_3_3_1_15: true
+suse16cis_rule_3_3_1_16: true
+suse16cis_rule_3_3_1_17: true
+suse16cis_rule_3_3_1_18: true
+suse16cis_rule_3_3_1_19: true
+
+# 3.3.2 Configure IPv6 Network Kernel Parameters
+suse16cis_rule_3_3_2_1: true
+suse16cis_rule_3_3_2_2: true
+suse16cis_rule_3_3_2_3: true
+suse16cis_rule_3_3_2_4: true
+suse16cis_rule_3_3_2_5: true
+suse16cis_rule_3_3_2_6: true
+suse16cis_rule_3_3_2_7: true
+suse16cis_rule_3_3_2_8: true
+
+## Section 4 Host Based Firewall
+
+# 4.1 single firewall
+suse16cis_rule_4_1_1: true
+suse16cis_rule_4_1_2: true
+suse16cis_rule_4_1_3: true
+suse16cis_rule_4_1_4: true
+suse16cis_rule_4_1_5: true
+suse16cis_rule_4_1_6: true
+suse16cis_rule_4_1_7: true
+suse16cis_rule_4_1_8: true
+
+# 4.2 Configure UncomplicatedFirewall
+
+## Section 5 Access Control
+# 5.1 Configure SSH Server
+suse16cis_rule_5_1_1: true
+suse16cis_rule_5_1_2: true
+suse16cis_rule_5_1_3: true
+suse16cis_rule_5_1_4: true
+suse16cis_rule_5_1_5: true
+suse16cis_rule_5_1_6: true
+suse16cis_rule_5_1_7: true
+suse16cis_rule_5_1_8: true
+suse16cis_rule_5_1_9: true
+suse16cis_rule_5_1_10: true
+suse16cis_rule_5_1_11: true
+suse16cis_rule_5_1_12: true
+suse16cis_rule_5_1_13: true
+suse16cis_rule_5_1_14: true
+suse16cis_rule_5_1_15: true
+suse16cis_rule_5_1_16: true
+suse16cis_rule_5_1_17: true
+suse16cis_rule_5_1_18: true
+suse16cis_rule_5_1_19: true
+suse16cis_rule_5_1_20: true
+suse16cis_rule_5_1_21: true
+suse16cis_rule_5_1_22: true
+suse16cis_rule_5_1_23: true
+suse16cis_rule_5_1_24: false
+
+# 5.2 Configure privilege escalation
+suse16cis_rule_5_2_1: true
+suse16cis_rule_5_2_2: true
+suse16cis_rule_5_2_3: true
+suse16cis_rule_5_2_4: true
+suse16cis_rule_5_2_5: true
+suse16cis_rule_5_2_6: true
+suse16cis_rule_5_2_7: true
+
+# 5.3.1 Configure PAM software packages
+suse16cis_rule_5_3_1_1: true
+
+# 5.3.2.1 Configure pam_faillock module
+suse16cis_rule_5_3_2_1_1: true
+suse16cis_rule_5_3_2_1_2: true
+suse16cis_rule_5_3_2_1_3: true
+
+# 5.3.2.2 Configure pam_quality module
+suse16cis_rule_5_3_2_2_1: true
+suse16cis_rule_5_3_2_2_2: true
+suse16cis_rule_5_3_2_2_3: true
+suse16cis_rule_5_3_2_2_4: true
+suse16cis_rule_5_3_2_2_5: true
+suse16cis_rule_5_3_2_2_6: true
+suse16cis_rule_5_3_2_2_7: true
+
+# 5.3.2.3 Configure pam_history module
+# This are added as part of 5.3.2.4 using jinja2 template
+suse16cis_rule_5_3_2_3_1: true
+suse16cis_rule_5_3_2_3_2: true
+suse16cis_rule_5_3_2_3_3: true
+
+# 5.3.2.4 Configure pam_unix module
+suse16cis_rule_5_3_2_4_1: true
+suse16cis_rule_5_3_2_4_2: true
+suse16cis_rule_5_3_2_4_3: true
+suse16cis_rule_5_3_2_4_4: true
+
+# 5.4 User Accounts and Environment
+# 5.4.1 Configure shadow password suite parameters
+suse16cis_rule_5_4_1_1: true
+suse16cis_rule_5_4_1_2: true
+suse16cis_rule_5_4_1_3: true
+suse16cis_rule_5_4_1_4: true
+suse16cis_rule_5_4_1_5: true
+suse16cis_rule_5_4_1_6: true
+
+# 5.4.2 Configure root and system accounts and environment
+suse16cis_rule_5_4_2_1: true
+suse16cis_rule_5_4_2_2: true
+suse16cis_rule_5_4_2_3: true
+suse16cis_rule_5_4_2_4: true
+suse16cis_rule_5_4_2_5: true
+suse16cis_rule_5_4_2_6: true
+suse16cis_rule_5_4_2_7: true
+suse16cis_rule_5_4_2_8: true
+
+# 5.4.2 Configure user default environment
+suse16cis_rule_5_4_3_1: true
+suse16cis_rule_5_4_3_2: true
+suse16cis_rule_5_4_3_3: true
+suse16cis_rule_5_4_3_4: true
+
+# Section 6 Logging and Auditing
+## 6.1 Configure Logging
+
+## 6.1.1 Configure journald
+suse16cis_rule_6_1_1_1: true
+suse16cis_rule_6_1_1_2: true
+suse16cis_rule_6_1_1_3: true
+suse16cis_rule_6_1_1_4: true
+suse16cis_rule_6_1_1_5: true
+suse16cis_rule_6_1_1_6: true
+suse16cis_rule_6_1_1_7: true
+
+## 6.1.2 Configure rsyslog
+suse16cis_rule_6_1_2_1: true
+suse16cis_rule_6_1_2_2: true
+suse16cis_rule_6_1_2_3: true
+suse16cis_rule_6_1_2_4: true
+suse16cis_rule_6_1_2_5: true
+suse16cis_rule_6_1_2_6: true
+suse16cis_rule_6_1_2_7: true
+suse16cis_rule_6_1_2_8: true
+suse16cis_rule_6_1_2_9: false
+suse16cis_rule_6_1_2_10: false
+suse16cis_rule_6_1_2_11: false
+
+## 6.1.3 Configure logfile access
+suse16cis_rule_6_1_3_1: true
+
+## 6.2.1 Configure systemd-journald service
+suse16cis_rule_6_2_1_1: true
+suse16cis_rule_6_2_1_2: true
+suse16cis_rule_6_2_1_3: true
+suse16cis_rule_6_2_1_4: true
+
+## 6.2.2.x Configure auditd
+suse16cis_rule_6_2_2_1: true
+suse16cis_rule_6_2_2_2: true
+suse16cis_rule_6_2_2_3: true
+suse16cis_rule_6_2_2_4: true
+
+## 6.2.3 Configure auditd rules
+suse16cis_rule_6_2_3_1: true
+suse16cis_rule_6_2_3_2: true
+suse16cis_rule_6_2_3_3: true
+suse16cis_rule_6_2_3_4: true
+suse16cis_rule_6_2_3_5: true
+suse16cis_rule_6_2_3_6: true
+suse16cis_rule_6_2_3_7: true
+suse16cis_rule_6_2_3_8: true
+suse16cis_rule_6_2_3_9: true
+suse16cis_rule_6_2_3_10: true
+suse16cis_rule_6_2_3_11: true
+suse16cis_rule_6_2_3_12: true
+suse16cis_rule_6_2_3_13: true
+suse16cis_rule_6_2_3_14: true
+suse16cis_rule_6_2_3_15: true
+suse16cis_rule_6_2_3_16: true
+suse16cis_rule_6_2_3_17: true
+suse16cis_rule_6_2_3_18: true
+suse16cis_rule_6_2_3_19: true
+suse16cis_rule_6_2_3_20: true
+suse16cis_rule_6_2_3_21: true
+suse16cis_rule_6_2_3_22: true
+suse16cis_rule_6_2_3_23: true
+suse16cis_rule_6_2_3_24: true
+suse16cis_rule_6_2_3_25: true
+suse16cis_rule_6_2_3_26: true
+suse16cis_rule_6_2_3_27: true
+suse16cis_rule_6_2_3_28: true
+suse16cis_rule_6_2_3_29: true
+suse16cis_rule_6_2_3_30: true
+suse16cis_rule_6_2_3_31: true
+suse16cis_rule_6_2_3_32: true
+suse16cis_rule_6_2_3_33: true
+suse16cis_rule_6_2_3_34: true
+suse16cis_rule_6_2_3_35: true
+
+## 6.2.4 Configure Logfiles
+suse16cis_rule_6_2_4_1: true
+suse16cis_rule_6_2_4_2: true
+suse16cis_rule_6_2_4_3: true
+suse16cis_rule_6_2_4_4: true
+suse16cis_rule_6_2_4_5: true
+suse16cis_rule_6_2_4_6: true
+suse16cis_rule_6_2_4_7: true
+suse16cis_rule_6_2_4_8: true
+suse16cis_rule_6_2_4_9: true
+suse16cis_rule_6_2_4_10: true
+
+## 6.3 Configure System Integrity (AIDE)
+suse16cis_rule_6_3_1: true
+suse16cis_rule_6_3_2: true
+suse16cis_rule_6_3_3: false
+
+## Section 7
+# 7.1 System File Permissions
+suse16cis_rule_7_1_1: true
+suse16cis_rule_7_1_2: true
+suse16cis_rule_7_1_3: true
+suse16cis_rule_7_1_4: true
+suse16cis_rule_7_1_5: true
+suse16cis_rule_7_1_6: true
+suse16cis_rule_7_1_7: true
+suse16cis_rule_7_1_8: true
+suse16cis_rule_7_1_9: true
+suse16cis_rule_7_1_10: true
+suse16cis_rule_7_1_11: true
+suse16cis_rule_7_1_12: true
+suse16cis_rule_7_1_13: true
+# 7.2 Local User and Group Settings
+suse16cis_rule_7_2_1: true
+suse16cis_rule_7_2_2: true
+suse16cis_rule_7_2_3: true
+suse16cis_rule_7_2_4: true
+suse16cis_rule_7_2_5: true
+suse16cis_rule_7_2_6: true
+suse16cis_rule_7_2_7: true
+suse16cis_rule_7_2_8: true
+suse16cis_rule_7_2_9: true
+suse16cis_rule_7_2_10: true
+
+#####################
+##### Variables #####
+#####################
+
+## Section 1
+
+## Controls 1.3.1.3 and 1.3.1.4 Ensure all selinux Profiles are in enforce (1.3.1.3/4) or complain (1.3.1.3) mode
+
+# This variable disables the implementation of rules 1.3.1.3 and 1.3.1.4
+# regarding enforcing profiles or putting them in complain mode
+suse16cis_selinux_disable: false
+
+## Controls 1.4.x - Boot password
+#
+# THIS VARIABLE SHOULD BE CHANGED AND INCORPORATED INTO VAULT
+# THIS VALUE IS WHAT THE ROOT PW WILL BECOME!!!!!!!!
+# HAVING THAT PW EXPOSED IN RAW TEXT IS NOT SECURE!!!!
+suse16cis_grub_user: root
+suse16cis_set_boot_pass: false
+suse16cis_bootloader_password_hash: "grub.pbkdf2.sha512.changethispassword"  # pragma: allowlist secret
+
+## Controls 1.5.x
+
+## Controls 1.6.x  - Warning banners
+# The controls 1.6.x set various warning banners and protect the respective files
+# by tightening the access rights.
+
+# This variable specifies the warning banner displayed to the user
+# after local login, remote login, and as motd (message of the day)
+# Noe that the banner text must not contain the below items in order to be
+# compliant with CIS: \m, \r, \s, \v or references to the OS platform
+suse16cis_warning_banner: |
+  Authorized uses only. All activity may be monitored and reported.
+
+# This variable governs, whether dynamic motd is disabled (as required by control 1.7.1)
+suse16cis_disable_dynamic_motd: true
+
+## Controls 1.8.x - Settings for GDM
+# To set whether this is required
+# If set to true and finds gui installed below is will run CIS
+# if set to false it will remove the gdm package and disable the service
+# then skip al the controls in 1.8.x
+suse16cis_desktop_required: false
+## Graphical/Gnome interface installed
+suse16cis_gui: false
+
+# This variable specifies the GNOME configuration database file to which configurations are written.
+# (See https://help.gnome.org/admin/system-admin-guide/stable/dconf-keyfiles.html.en)
+# The default database is `local`.
+suse16cis_dconf_db_name: "{{ prelim_dconf_db | default('local') }}"
+##
+## Section 2 Control Variables
+##
+
+## Control 2.3.1.1
+# This variable choses the tool used for time synchronization
+# The two options are `chrony`and `systemd-timesyncd`.
+suse16cis_time_sync_tool: "chronyd"
+
+## Controls 2.3.x - Configure time pools & servers for chrony and timesyncd
+# The following variable represents a list of of time server pools used
+# for configuring chrony and timesyncd.
+# Each list item contains two settings, `name` (the domain name of the pool) and synchronization `options`.
+# The default setting for the `options` is `iburst maxsources 4` -- please refer to the documentation
+# of the time synchronization mechanism you are using.
+suse16cis_time_pool_name: time.nist.gov
+
+# The following variable represents a list of of time servers used
+# for configuring chrony and timesyncd
+# Each list item contains two settings, `name` (the domain name of the server) and synchronization `options`.
+# The default setting for the `options` is `iburst` -- please refer to the documentation
+# of the time synchronization mechanism you are using.
+suse16cis_time_servers:
+  - name: time-a-g.nist.gov
+    options: iburst
+  - name: time-b-g.nist.gov
+    options: iburst
+  - name: time-c-g.nist.gov
+    options: iburst
+
+##
+## Service configuration variables.
+##
+## Set the respective variable to true to keep the service.
+## otherwise the service is stopped and disabled
+##
+# Service configuration
+# Options are
+# true to leave installed if exists not changes take place
+# false - this removes the package
+# mask - if a dependency for product so cannot be removed
+# Server Services
+suse16cis_autofs_services: false
+suse16cis_autofs_mask: false
+suse16cis_avahi_server: false
+suse16cis_avahi_mask: false
+suse16cis_dhcp_server: false
+suse16cis_dhcp_mask: false
+suse16cis_dns_server: false
+suse16cis_dns_mask: false
+suse16cis_dnsmasq_server: false
+suse16cis_dnsmasq_mask: false
+suse16cis_ftp_server: false
+suse16cis_ftp_mask: false
+suse16cis_ldap_server: false
+suse16cis_ldap_mask: false
+suse16cis_message_server: false  # This is for messaging dovecot and cyrus-imap
+suse16cis_message_mask: false
+suse16cis_nfs_server: true
+suse16cis_nfs_mask: true
+suse16cis_nis_server: true  # set to mask if nis client required
+suse16cis_nis_mask: false
+suse16cis_print_server: false  # replaces cups
+suse16cis_print_mask: false
+suse16cis_rpc_server: true
+suse16cis_rpc_mask: true
+suse16cis_rsync_server: false
+suse16cis_rsync_mask: false
+suse16cis_samba_server: false
+suse16cis_samba_mask: false
+suse16cis_snmp_server: false
+suse16cis_snmp_mask: false
+suse16cis_telnet_server: false
+suse16cis_telnet_mask: false
+suse16cis_tftp_server: false
+suse16cis_tftp_mask: false
+suse16cis_squid_server: false
+suse16cis_squid_mask: false
+suse16cis_apache2_server: false
+suse16cis_apache2_mask: false
+suse16cis_nginx_server: false
+suse16cis_nginx_mask: false
+suse16cis_xinetd_server: false
+suse16cis_xinetd_mask: false
+suse16cis_xwindow_server: false  # will remove mask not an option
+suse16cis_is_mail_server: false
+
+# Client Services
+suse16cis_nis_client_required: false  # Same package as NIS server
+suse16cis_tftp_client: false
+suse16cis_telnet_required: false
+suse16cis_ldap_clients_required: false
+suse16cis_ftp_client: false
+
+##
+# Section 3 Control Variables
+##
+
+# This variable governs whether specific CIS rules
+# concerned with acceptance and routing of packages
+# are skipped.
+suse16cis_is_router: false
+
+## IPv4 requirement toggle
+# This variable governs whether ipv4 is enabled or disabled.
+suse16cis_ipv4_required: true
+
+## IPv6 requirement toggle
+# This variable governs whether ipv6 is enabled or disabled.
+suse16cis_ipv6_required: false
+## Control 3.1.1 - Ensure system is checked to determine if IPv6 is enabled
+# This variable governs the mechanism of how the disabling of IPV6 is carried out.
+# Its possible values are `grub` and `sysctl`.
+suse16cis_ipv6_disable: grub
+
+## Control 3.1.3 - Ensure bluetooth Services are not in use
+# This control managed how the bluetooth service is managaed
+# Options are
+# true to leave installed if exists not changes take place
+# false - this removes the package
+# mask - if a dependency for product so cannot be removed
+suse16cis_bluetooth_service: false
+suse16cis_bluetooth_mask: false
+
+##
+## Section 4 Control Variables
+##
+
+## Controls 4.1.x, 4.2.x- Firewall configuration
+# This variable represents the toggle for which firewall package is used.
+# This only allows firewalld setting to anything else will skip these controls in section 4
+suse16cis_firewall: "firewalld"
+
+# Set this to be the default zone for firewalld
+suse16cis_default_zone: public
+
+# Zone to be used by the loopback interface
+suse16cis_loopback_zone: trusted
+
+##
+## Section 5 Control Variables
+##
+
+# SSH 5.1.x
+# This variable specifies the encryption algorithms that can be used for securing
+# data transmission.
+suse16cis_sshd_ciphers:
+  - aes256-gcm@openssh.com
+  - aes128-gcm@openssh.com
+  - aes256-ctr
+  - aes192-ctr
+  - aes128-ctr
+suse16cis_sshd_weak_ciphers:
+  - 3des-cbc
+  - aes128-cbc
+  - aes192-cbc
+  - aes256-cbc
+  - chacha20-poly1305@openssh.com
+
+# This variable is used to state the key exchange algorithms used to establish secure encryption
+# keys during the initial connection setup.
+suse16cis_sshd_kex_algorithms:
+  - ecdh-sha2-nistp256
+  - ecdh-sha2-nistp384
+  - ecdh-sha2-nistp521
+  - diffie-hellman-group-exchange-sha256
+  - diffie-hellman-group16-sha512
+  - diffie-hellman-group18-sha512
+  - diffie-hellman-group14-sha256
+suse16cis_sshd_weak_kex:
+  - diffie-hellman-group1-sha1
+  - diffie-hellman-group14-sha1
+  - diffie-hellman-group-exchange-sha1
+
+# This variable specifies a list of message authentication code algorithms (MACs) that are allowed for verifying
+# the integrity of data exchanged.
+suse16cis_sshd_macs:
+  - hmac-sha1
+  - hmac-sha2-256
+  #  - hmac-sha2-384  # hashed out seen as bad ssh2 MAC
+  - hmac-sha2-512
+suse16cis_sshd_weak_macs:
+  - hmac-md5,hmac-md5-96
+  - hmac-ripemd160
+  - hmac-sha1-96
+  - umac-64@openssh.com
+  - hmac-md5-etm@openssh.com
+  - hmac-md5-96-etm@openssh.com
+  - hmac-ripemd160-etm@openssh.com
+  - hmac-sha1-96-etm@openssh.com
+  - umac-64-etm@openssh.com
+
+# Note the following to understand precedence and layout
+suse16cis_sshd_allow_users:
+suse16cis_sshd_allow_groups:
+suse16cis_sshd_deny_users:
+suse16cis_sshd_deny_groups:
+
+# The two options ClientAliveInterval and ClientAliveCountMax control the timeout of SSH sessions.
+# alive interval in ms in seconds
+# countmax times to count aline interval
+# e.g 15sec x 3 = 45 seconds
+suse16cis_sshd_client_alive_interval: 15
+suse16cis_sshd_client_alive_count_max: 3
+
+## Control 5.2.7
+# This variable determines the group of users that are allowed to use the su command.
+# one to specify a user group that is allowed to use the "su" command.
+# CIS requires that such a group be created (named according to site policy) and be kept empty.
+suse16cis_sugroup: nosugroup
+
+# 5.2.x sudo log file path (must match remediation defaults)
+suse16cis_sudolog_location: "/var/log/sudo.log"
+
+# 5.3.2.x.x - Pam Settings
+# Ability to use pam-config tool to set pam settings
+# NOTE: This changes as pwhistory.conf no longer valid Manual changes may need to be complete
+suse16cis_use_pam_config: true
+
+# 5.4.1.x login.defs password settings
+suse16cis_pass_max_days: "365"
+suse16cis_pass_min_days: "1"
+suse16cis_pass_warn_age: "7"
+
+##
+## Section 6 Control Variables
+##
+#
+## Control 6.1.2
+# Set how aide is scanned either cron or timer
+suse16cis_aide_scan: cron
+# These are the crontab settings for periodical checking of the filesystem's integrity using AIDE.
+# The sub-settings of this variable provide the parameters required to configure
+# the cron job on the target system.
+# Cron is a time-based job scheduling program in Unix OS, which allows tasks to be scheduled
+# and executed automatically at a certain point in time.
+
+# This variable represents the user account under which the cron job for AIDE will run.
+suse16cis_aide_cron_user: root
+# This variable represents the path to the AIDE crontab file.
+suse16cis_aide_cron_file: /etc/cron.d/aide_cron
+# This variable represents the actual command or script that the cron job
+# will execute for running AIDE.
+suse16cis_aide_cron_job: '/usr/bin/aide --check'
+# These variables define the schedule for the cron job
+# This variable governs the minute of the time of day when the AIDE cronjob is run.
+# It must be in the range `0-59`.
+suse16cis_aide_cron_minute: 0
+# This variable governs the hour of the time of day when the AIDE cronjob is run.
+# It must be in the range `0-23`.
+suse16cis_aide_cron_hour: 5
+# This variable governs the day of the month when the AIDE cronjob is run.
+# `*` signifies that the job is run on all days; furthermore, specific days
+# can be given in the range `1-31`; several days can be concatenated with a comma.
+# The specified day(s) can must be in the range  `1-31`.
+suse16cis_aide_cron_day: '*'
+# This variable governs months when the AIDE cronjob is run.
+# `*` signifies that the job is run in every month; furthermore, specific months
+# can be given in the range `1-12`; several months can be concatenated with commas.
+# The specified month(s) can must be in the range  `1-12`.
+suse16cis_aide_cron_month: '*'
+# This variable governs the weekdays, when the AIDE cronjob is run.
+# `*` signifies that the job is run on all weekdays; furthermore, specific weekdays
+# can be given in the range `0-7` (both `0` and `7` represent Sunday); several weekdays
+# can be concatenated with commas.
+suse16cis_aide_cron_weekday: '*'
+
+## Preferred method of logging
+## Whether rsyslog or journald preferred method for local logging
+## Control 6.2.1 & 6.2.3 | Configure journald
+## Control 6.2.3 | Configure rsyslog
+# This variable governs which logging service should be used, choosing between 'rsyslog'(CIS recommendation)
+# or 'journald'(only one is implemented) will trigger the execution of the associated subsection, as the-best
+# practices are written wholly independent of each other.
+suse16cis_syslog: journald
+
+## Control 6.2.1.3 - Ensure journald log rotation is configured per site policy
+# Current variable configures the max amount of disk space the logs will use(thus, journal files
+# will not grow without bounds)
+# The variables below related to journald, please set these to your site specific values
+# These variable specifies how much disk space the journal may use up at most
+# Specify values in bytes or use K, M, G, T, P, E as units for the specified sizes.
+# See https://www.freedesktop.org/software/systemd/man/journald.conf.html for more information.
+suse16cis_journald_systemmaxuse: 10M
+## Control 6.2.1.3 - Ensure journald log rotation is configured per site policy
+# Current variable configures the amount of disk space to keep free for other uses.
+suse16cis_journald_systemkeepfree: 100G
+## Control 6.2.1.3 - Ensure journald log rotation is configured per site policy
+# This variable configures how much disk space the journal may use up at most.
+# Similar with 'suse16cis_journald_systemmaxuse', but related to runtime space.
+suse16cis_journald_runtimemaxuse: 10M
+## Control 6.2.1.3 - Ensure journald log rotation is configured per site policy
+# This variable configures the actual amount of disk space to keep free
+# Similar with 'suse16cis_journald_systemkeepfree', but related to runtime space.
+suse16cis_journald_runtimekeepfree: 100G
+## Control 6.2.1.3 - Ensure journald log rotation is configured per site policy
+# Current variable governs the settings for log retention(how long the log files will be kept).
+# Thus, it specifies the maximum time to store entries in a single journal
+# file before rotating to the next one. Set to 0 to turn off this feature.
+# The given values is interpreted as seconds, unless suffixed with the units
+# `year`, `month`, `week`, `day`, `h` or `m` to override the default time unit of seconds.
+# Values are Xm, Xh, Xday, Xweek, Xmonth, Xyear, for example 2week is two weeks
+# ATTENTION: Uncomment the keyword below when values are set!
+suse16cis_journald_maxfilesec: 1month
+
+## Control 6.2.3.6 - Ensure rsyslog is configured to send logs to a remote log host
+# This variable governs if 'rsyslog' service should be automatically configured to forward messages to a
+# remote log server. If set to 'false', the configuration of the 'omfwd' plugin, used to provide forwarding
+# over UDP or TCP, will not be performed.
+suse16cis_remote_log_server: false
+## Control 6.2.3.6 - Ensure rsyslog is configured to send logs to a remote log host
+# This variable configures the value of the 'target' parameter to be configured when enabling
+# forwarding syslog messages to a remote log server, thus configuring the actual FQDN/IP address of the
+# destination server. For this value to be reflected in the configuration, the variable which enables the
+# automatic configuration of rsyslog forwarding must be enabled('suse16cis_remote_log_server: true').
+suse16cis_remote_log_host: logagg.example.com
+## Control 6.2.3.6 - Ensure rsyslog is configured to send logs to a remote log host
+# This variable configures the value of the 'port' parameter to be configured when enabling
+# forwarding syslog messages to a remote log server. The default value for this destination port is 514.
+# For this value to be reflected in the configuration, the variable which enables the
+# automatic configuration of rsyslog forwarding must be enabled('suse16cis_remote_log_server: true').
+suse16cis_remote_log_port: 514
+## Control 6.2.3.6 - Ensure rsyslog is configured to send logs to a remote log host
+# This variable configures the value("TCP"/"UDP") of the 'protocol' parameter to be configured when enabling
+# forwarding syslog messages to a remote log server. The default value for the 'omfwd' plug-in is UDP.
+# For this value to be reflected in the configuration, the variable which enables the
+# automatic configuration of rsyslog forwarding must be enabled('suse16cis_remote_log_server: true').
+suse16cis_remote_log_protocol: tcp
+## Control 6.2.3.6 - Ensure rsyslog is configured to send logs to a remote log host
+# This variable governs how often an action is retried(value is passed to 'action.resumeRetryCount' parameter) before
+# it is considered to have failed(that roughly translates to discarded messages). The default value is 0, but
+# when set to "-1"(eternal), this setting would prevent rsyslog from dropping messages when retrying to connect
+# if server is not responding. For this value to be reflected in the configuration, the variable which enables the
+# automatic configuration of rsyslog forwarding must be enabled('suse16cis_remote_log_server: true').
+suse16cis_remote_log_retrycount: 100
+## Control 6.2.3.6 - Ensure rsyslog is configured to send logs to a remote log host
+# This variable configures the maximum number of messages that can be hold(value is passed to 'queue.size' parameter).
+# For this value to be reflected in the configuration, the variable which enables the automatic configuration
+# of rsyslog forwarding must be enabled('suse16cis_remote_log_server: true').
+suse16cis_remote_log_queuesize: 1000
+
+## Control 6.2.2.1.2 - Ensure systemd-journal-remote is configured
+# 'suse16cis_journal_upload_url' is the ip address to upload the journal entries to
+#  URL value may specify either just the hostname or both the protocol and hostname. 'https' is the default. The port
+#  number may be specified after a colon (":"), otherwise 19532 will be used by default.
+suse16cis_journal_upload_url: 192.168.50.42
+## The paths below have the default paths/files, but allow user to create custom paths/filenames
+
+## Control 6.2.2.1.2 - Ensure systemd-journal-remote is configured
+# The filename in which the correct configuration shoud be stored in /etc/systemd/journal-upload.conf.d/
+suse16cis_journal_remote_upload_config_file: remote_upload.conf
+# This variable specifies the path to the private key file used by the remote journal
+# server to authenticate itself to the client. This key is used alongside the server's
+# public certificate to establish secure communication.
+suse16cis_journal_upload_serverkeyfile: "/etc/ssl/private/journal-upload.pem"
+## Control 6.2.2.1.2 - Ensure systemd-journal-remote is configured
+# This variable specifies the path to the public certificate file of the remote journal
+# server. This certificate is used to verify the authenticity of the remote server.
+suse16cis_journal_servercertificatefile: "/etc/ssl/certs/journal-upload.pem"
+## Control 6.2.2.1.2 - Ensure systemd-journal-remote is configured
+# This variable specifies the path to a file containing one or more public certificates
+# of certificate authorities (CAs) that the client trusts. These trusted certificates are used
+# to validate the authenticity of the remote server's certificate.
+suse16cis_journal_trustedcertificatefile: "/etc/ssl/ca/trusted.pem"
+# ATTENTION: Uncomment the keyword below when values are set!
+
+# Controls 6.2.2.x journald configuration files
+# Best parctice is to use configuration files rather than a default conf.
+# This allows you to call the files as you have set them or change to match your site policy
+# These can be found in /etc/systemd/journald.conf.d/
+# 6.2.2.2
+suse16cis_journald_forwardsyslog: forwardtosyslog.conf
+
+# 6.2.2.3 and 6.2.2.4
+suse16cis_journald_storage: storage.conf

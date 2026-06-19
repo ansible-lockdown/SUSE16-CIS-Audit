@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.run_heavy_tests }}
+    {{ if .Vars.suse16cis_rule_1_2_2_1 }}
+command:
+  package-updates:
+    title: 1.2.2.1 | Ensure updates, patches, and additional security software are installed | packages
+    exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
+    exec: zypper lu
+    stdout:
+    - "No updates found."
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.2.2.1
+      NIST800-53R5: SI-2
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_4_2 }}
+command:
+  cis_6_2_4_2:
+    title: 6.2.4.2 | Ensure audit log files mode is configured | files with excess permissions
+    exit-status:
+      or:
+      - 0
+      - 1
+    exec: >-
+      [ -f /etc/audit/auditd.conf ] && find
+      "$(dirname "$(awk -F= '/^\s*log_file\s*/{print $2}' /etc/audit/auditd.conf | xargs)")"
+      -type f -perm /0137 2>/dev/null || true
+    stdout:
+      - '!/.+/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.2
+      NIST800-53R5:
+      - AU-9
+  {{ end }}
+{{ end }}

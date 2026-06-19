@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_2_4_3_2 }}
+command:
+  service_unit_perms:
+    title: 2.4.3.2 | Ensure access to systemd service unit files is configured
+    exit-status:
+      or:
+      - 0
+      - 1
+    exec: find -f /run/systemd/system /etc/systemd/system /usr/lib/systemd/system -name '*.service' \( ! -user root -o ! -group root -o -perm /133 \) 2>/dev/null
+    stdout:
+    - '!/^.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.3.2
+      NIST800-53R5:
+      - CM-6
+      - AC-6
+  {{ end }}
+{{ end }}

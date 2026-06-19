@@ -1,0 +1,18 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_6_1_2_2 }}
+service:
+  rsyslog:
+    title: 6.1.2.2 | Ensure rsyslog service is enabled and active
+    running: true
+    enabled: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.2
+      NIST800-53R5:
+      - CM-6
+  {{ end }}
+{{ end }}

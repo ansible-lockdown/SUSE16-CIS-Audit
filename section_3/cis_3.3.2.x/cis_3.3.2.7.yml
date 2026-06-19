@@ -1,0 +1,18 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_3_3_2_7 }}
+kernel-param:
+  net_ipv6_conf_all_accept_ra:
+    title: 3.3.2.7 | Ensure net.ipv6.conf.all.accept_ra is configured
+    name: net.ipv6.conf.all.accept_ra
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2.7
+      NIST800-53R5:
+      - CM-6
+  {{ end }}
+{{ end }}

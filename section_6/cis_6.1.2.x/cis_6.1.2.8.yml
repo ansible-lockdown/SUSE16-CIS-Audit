@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_6_1_2_8 }}
+command:
+  rsyslog_logrotate_manual:
+    title: 6.1.2.8 | Ensure logrotate is configured
+    exec: echo "Manual check - review /etc/logrotate.conf and /etc/logrotate.d/ for appropriate log rotation per site policy"
+    exit-status: 0
+    stdout: []
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.8
+      NIST800-53R5:
+      - AU-8
+  {{ end }}
+{{ end }}

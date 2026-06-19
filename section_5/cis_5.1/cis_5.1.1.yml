@@ -1,0 +1,60 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_5_1_1 }}
+file:
+  sshd_config_perms:
+    title: 5.1.1 | Ensure access to sshd_config files is configured
+    path: /etc/ssh/sshd_config
+    exists:
+      or:
+      - true
+      - false
+    mode:
+      or:
+      - '0400'
+      - '0600'
+    owner: root
+    group: root
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.1
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  sshd_config_root_path_perms:
+    title: 5.1.1 | Ensure access to sshd_config files is configured
+    path: /usr/etc/ssh/sshd_config
+    exists: true
+    mode:
+      or:
+      - '0400'
+      - '0600'
+    owner: root
+    group: root
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.1
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+command:
+  sshd_config_d_file:
+    title: 5.1.1 | Ensure access to sshd_config files is configured
+    exec: find /etc/ssh/sshd_config.d  /usr/etc/ssh/sshd_config.d \( -perm /077 -o ! -user root -o ! -group root \)
+    exit-status: 0
+    stdout: '!/.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.1
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

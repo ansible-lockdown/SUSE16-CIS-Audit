@@ -1,0 +1,33 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_20 }}
+command:
+  cis_6_2_3_20_cnf:
+    title: 6.2.3.20 | Ensure session initiation information is collected | config
+    exit-status: 0
+    exec: "grep -E -- 'path=/var/run/utmp' /etc/audit/rules.d/*.rules"
+    stdout:
+      - '/path=\/var\/run\/utmp -F perm=wa -k session/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.20
+      NIST800-53R5:
+      - AU-12
+  cis_6_2_3_20_live:
+    title: 6.2.3.20 | Ensure session initiation information is collected | live
+    exit-status: 0
+    exec: "auditctl -l | grep -E -- 'path=/var/run/utmp'"
+    stdout:
+      - '/path=\/var\/run\/utmp -F perm=wa -F key=session/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.20
+      NIST800-53R5:
+      - AU-12
+  {{ end }}
+{{ end }}

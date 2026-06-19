@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_4_4 }}
+command:
+  cis_6_2_4_4_conf:
+    title: 6.2.4.4 | Ensure audit log files group owner is configured | log_group in auditd.conf
+    exit-status: 0
+    exec: "grep -Pi -- '^\\h*log_group\\h*=\\h*(root|audit)\\b' /etc/audit/auditd.conf"
+    stdout:
+      - '/log_group\s*=\s*(root|audit)/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.4
+      NIST800-53R5:
+      - AU-9
+  {{ end }}
+{{ end }}

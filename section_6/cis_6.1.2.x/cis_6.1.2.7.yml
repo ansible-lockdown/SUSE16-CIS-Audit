@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_6_1_2_7 }}
+command:
+  rsyslog_no_imtcp:
+    title: 6.1.2.7 | Ensure rsyslog is not configured to receive logs from a remote client
+    exec: grep -P '^\s*\$ModLoad\s+imtcp|^\s*\$InputTCPServerRun' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+    exit-status:
+      or: [1, 2]
+    stdout: []
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.7
+      NIST800-53R5:
+      - AU-2
+      - AU-7
+      - AU-12
+      - CM-6
+  {{ end }}
+{{ end }}

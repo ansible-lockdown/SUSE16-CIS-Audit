@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_5_1_19 }}
+file:
+  ssh_empty_passwd:
+    title: 5.1.19 | Ensure sshd PermitEmptyPasswords is disabled
+    path: /etc/ssh/sshd_config
+    exists:
+      or:
+      - true
+      - false
+    contents:
+    - '/^(?i)PermitEmptyPasswords no/'
+    - '!/^(?i)PermitEmptyPasswords yes/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.19
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}

@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_3_15 }}
+command:
+  cis_6_2_3_15_cnf:
+    title: 6.2.3.15 | Ensure events that modify /etc/pam.d/ information are collected | config
+    exit-status: 0
+    exec: "grep -E -- 'dir=/etc/pam.d/' /etc/audit/rules.d/*.rules"
+    stdout:
+      - '/dir=\/etc\/pam\.d\/ -F perm=wa -k pam/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.15
+      NIST800-53R5:
+      - AU-9
+      - AU-12
+  cis_6_2_3_15_live:
+    title: 6.2.3.15 | Ensure events that modify /etc/pam.d/ information are collected | live
+    exit-status: 0
+    exec: "auditctl -l | grep -E -- 'dir=/etc/pam.d/'"
+    stdout:
+      - '/dir=\/etc\/pam\.d\/ -F perm=wa -F key=pam/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.15
+      NIST800-53R5:
+      - AU-9
+      - AU-12
+  {{ end }}
+{{ end }}

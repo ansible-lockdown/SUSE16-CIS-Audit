@@ -1,0 +1,17 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_1_6_1 }}
+package:
+  crypto_pkg_installed:
+    title: 1.6.1 | Ensure crypto-policies-scripts package is installed
+    name: crypto-policies-scripts
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.6.1
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

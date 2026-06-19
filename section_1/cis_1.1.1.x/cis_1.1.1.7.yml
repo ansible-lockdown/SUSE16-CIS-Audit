@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_1_1_1_7 }}
+command:
+  overlay:
+    title: 1.1.1.7 | Ensure overlay kernel module is not available | disabled
+    exit-status: 0
+    exec: "modprobe -n -v overlay | grep -E '(overlay|install)'"
+    stdout:
+    - '/install /bin/(false|true)/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.7
+      NIST800-53R5: CM-7
+  blacklist_overlay:
+    title: 1.1.1.7 | Ensure overlay kernel module is not available | blacklist
+    exit-status: 0
+    exec: grep overlay /etc/modprobe.d/*.conf
+    stdout:
+      - '/blacklist overlay/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.7
+      NIST800-53R5: CM-7
+  {{ end }}
+{{ end }}

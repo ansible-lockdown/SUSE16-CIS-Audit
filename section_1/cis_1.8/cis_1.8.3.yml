@@ -1,0 +1,38 @@
+---
+
+{{ if .Vars.suse16cis_gui }}
+  {{ if .Vars.suse16cis_desktop_required }}
+    {{ if .Vars.suse16cis_level_1 }}
+      {{ if .Vars.suse16cis_rule_1_8_3 }}
+command:
+  gdm_last_login:
+    title: 1.8.3 | Ensure GDM screen lock is configured
+    exec: cat /etc/dconf/profile/gdm
+    exit-status: 0
+    stdout:
+    - '/^user-db:user/'
+    - '/^system-db:gdm/'
+    - '/^file-db:\/usr\/share\/gdm\/greeter-dconf-defaults/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.3
+file:
+  00_login_screen:
+    title: 1.8.3 | Ensure GDM screen lock is configured
+    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/00-login-screen
+    exists: true
+    contents:
+    - '/\[org/gnome/login-screen\]/'
+    - '/disable-user-list=true/'
+    - '!/disable-user-list=true/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.3
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

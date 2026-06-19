@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_5_3_2_4_3 }}
+command:
+  pam_unix_password_use_pam:
+    title: 5.3.2.4.3 | Ensure pam_unix includes a strong password hashing algorithm
+    exec: pam-config --query --unix --unix-sha512
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/auth: .*(sha512|yesencrypt)/'
+    - '/account: .*(sha512|yesencrypt)/'
+    - '/password: .*(sha512|yesencrypt)/'
+    - '/session: .*(sha512|yesencrypt)/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.4.3
+      NIST800-53R5: IA-5
+  {{ end }}
+{{ end }}

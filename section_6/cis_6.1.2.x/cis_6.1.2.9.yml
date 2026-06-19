@@ -1,0 +1,15 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_1_2_9 }}
+package:
+  rsyslog-module-gtls:
+    title: 6.1.2.9 | Ensure rsyslog-gnutls is installed
+    installed: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.1.2.9
+  {{ end }}
+{{ end }}

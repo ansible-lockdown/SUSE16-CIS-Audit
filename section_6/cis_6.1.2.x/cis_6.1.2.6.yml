@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_6_1_2_6 }}
+command:
+  rsyslog_remote_logging_manual:
+    title: 6.1.2.6 | Ensure rsyslog is configured to send logs to a remote log host
+    exec: echo "Manual check - verify rsyslog is configured to forward logs to a remote log server per site policy"
+    exit-status: 0
+    stdout: []
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.6
+      NIST800-53R5:
+      - AU-6
+  {{ end }}
+{{ end }}

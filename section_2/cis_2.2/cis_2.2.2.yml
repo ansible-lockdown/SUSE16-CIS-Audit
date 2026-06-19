@@ -1,0 +1,21 @@
+---
+
+{{ if not .Vars.suse16cis_ldap_clients_required }}
+  {{ if .Vars.suse16cis_level_1 }}
+    {{ if .Vars.suse16cis_rule_2_2_2 }}
+package:
+  {{- range mkSlice "openldap2-client" "openldap2_5" }}
+  {{ . }}_removed:
+    title: 2.2.2 | Ensure ldap client is not installed | {{ . }} package
+    installed: false
+    name: {{ . }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.2.2
+      NIST800-53R5:
+      - CM-7
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

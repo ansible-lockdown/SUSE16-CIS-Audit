@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_6_2_2_1 }}
+command:
+  auditd_log_size:
+    title: 6.2.2.1 | Ensure audit log storage size is configured
+    exit-status: 0
+    exec: "grep -Po -- '^\\h*max_log_file\\h*=\\h*\\d+\\b' /etc/audit/auditd.conf"
+    stdout:
+      - '/max_log_file\s*=\s*\d+/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.2.1
+      NIST800-53R5:
+      - AU-8
+  {{ end }}
+{{ end }}

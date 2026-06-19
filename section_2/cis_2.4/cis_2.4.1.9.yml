@@ -1,0 +1,34 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_2_4_1_9 }}
+file:
+  crontab_deny_absent:
+    title: 2.4.1.9 | Ensure access to crontab is configured | cron.deny absent
+    path: /etc/cron.deny
+    exists: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.1.9
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  crontab_allow_restricted:
+    title: 2.4.1.9 | Ensure access to crontab is configured | cron.allow perms
+    path: /etc/cron.allow
+    exists: true
+    owner: root
+    group: root
+    mode: "0640"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.1.9
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

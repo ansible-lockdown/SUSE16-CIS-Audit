@@ -1,0 +1,18 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_3_3_1_14 }}
+kernel-param:
+  net_ipv4_conf_all_accept_source_route:
+    title: 3.3.1.14 | Ensure net.ipv4.conf.all.accept_source_route is configured
+    name: net.ipv4.conf.all.accept_source_route
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1.14
+      NIST800-53R5:
+      - CM-6
+  {{ end }}
+{{ end }}

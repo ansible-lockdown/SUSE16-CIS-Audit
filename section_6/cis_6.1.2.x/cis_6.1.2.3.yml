@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_6_1_2_3 }}
+    {{ if eq .Vars.suse16cis_syslog "rsyslog" }}
+command:
+  rsyslog_forwardtosyslog:
+    title: 6.1.2.3 | Ensure journald is configured to send logs to rsyslog
+    exec: grep -i forward /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*
+    exit-status:
+      or: [0, 1, 2]
+    stdout:
+    - '/(?i)^.*:ForwardToSyslog\s*=\s*yes/'
+    - '!/(?i)^.*:ForwardToSyslog\s*=\s*no/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.3
+      NIST800-53R5:
+      - AC-3
+      - AU-2
+      - AU-4
+      - AU-12
+      - MP-2
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,30 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_1_5_5 }}
+kernel-param:
+  kernel_kptr_restrict_running:
+    title: 1.5.5 | Ensure kernel.kptr_restrict is configured | running
+    name: kernel.kptr_restrict
+    value: '{{ .Vars.suse16cis_kernel_kptr_restrict }}'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.5
+      NIST800-53R5: CM-6
+command:
+  kernel_kptr_restrict_conf:
+    title: 1.5.5 | Ensure kernel.kptr_restrict is configured | conf
+    exit-status: 0
+    exec: 'grep "kernel\.kptr_restrict" /etc/sysctl.conf /etc/sysctl.d/*'
+    stdout:
+    - '/^*.conf:kernel\.kptr_restrict\s*=\s*(1|2)/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.5
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

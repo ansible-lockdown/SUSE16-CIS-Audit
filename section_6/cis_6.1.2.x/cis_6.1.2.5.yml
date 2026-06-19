@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.suse16cis_level_1 }}
+  {{ if .Vars.suse16cis_rule_6_1_2_5 }}
+command:
+  rsyslog_logging_manual:
+    title: 6.1.2.5 | Ensure rsyslog logging is configured
+    exec: echo "Manual check - review rsyslog.conf for appropriate logging rules per site policy"
+    exit-status: 0
+    stdout: []
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2.5
+      NIST800-53R5:
+      - AU-2
+      - AU-7
+      - AU-12
+  {{ end }}
+{{ end }}

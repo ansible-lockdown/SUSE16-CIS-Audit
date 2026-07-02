@@ -23,7 +23,7 @@ suse16cis_level_2: true
 run_heavy_tests: true
 
 #  True is BIOS based system else set to false
-suse16cis_legacy_boot: true
+suse16cis_legacy_boot: false
 
 ##
 ## Rule-specific switches

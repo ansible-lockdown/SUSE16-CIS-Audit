@@ -1,3 +1,5 @@
+---
+
 gossfile:
   {{ if .Vars.suse16cis_section1 }}
   section_1/*/*.yml: {}

@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.suse16cis_level_1 }}
+{{ if .Vars.suse16cis_level_2 }}
   {{ if .Vars.suse16cis_rule_6_2_4_1 }}
 command:
   logfile_configured_login_files:
@@ -12,8 +12,8 @@ command:
       - 1
     stdout: ['!/.*/']
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.4.1
       NIST800-53R5:
@@ -27,8 +27,8 @@ command:
       - 1
     stdout: ['!/.*/']
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.4.1
       NIST800-53R5:
@@ -42,8 +42,8 @@ command:
       - 1
     stdout: ['!/.*/']
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.4.1
       NIST800-53R5:
@@ -56,8 +56,8 @@ file:
     contents:
     - '/^log_group\s*=\s*(root|audit)/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.4.1
       NIST800-53R5:

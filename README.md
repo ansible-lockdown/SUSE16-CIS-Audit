@@ -58,6 +58,12 @@ Ability to add your own requirements is available in several sections
 
 [MindPoint Group]
 
+## Contributing
+
+Bug reports and feature requests are welcome from everyone, please raise an issue.
+
+Pull requests are accepted from approved contributors only. To be onboarded, join the [Discord Server](https://www.lockdownenterprise.com/discord) and request contributor access. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full process.
+
 ## Links and Further information
 
 - [Goss]
@@ -74,9 +80,9 @@ README Links
 [Centre For Internet Security]: https://www.cisecurity.org
 [Read the Docs - Audit]: https://ansible-lockdown.readthedocs.io/en/latest/audit/getting-started-audit.html
 
-[goss documentation]: (https://github.com/goss-org/goss/blob/master/README.md)
+[goss documentation]: https://github.com/krameff/goss/blob/master/README.md
 
-[Goss]: https://goss.rocks
+[Goss]: https://github.com/krameff/goss/blob/devel/docs/index.md
 [DISA STIG]: https://public.cyber.mil/stigs
 
 [MindPoint Group]: https://mindpointgroup.com/cybersecurity-consulting/automate/baseline-modernization#GH_LockdownReadMe

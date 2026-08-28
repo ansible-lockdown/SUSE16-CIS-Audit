@@ -1,7 +1,6 @@
 ---
 
 {{ if .Vars.suse16cis_gui }}
-  {{ if .Vars.suse16cis_desktop_required }}
     {{ if .Vars.suse16cis_level_1 }}
       {{ if .Vars.suse16cis_rule_1_8_6 }}
 file:
@@ -17,10 +16,9 @@ file:
     - '!/^automount-open=true/'
     meta:
       server: 1
-      workstation: 2
+      workstation: 1
       CIS_ID:
       - 1.8.6
       {{ end }}
     {{ end }}
-  {{ end }}
 {{ end }}

@@ -1,7 +1,6 @@
 ---
 
 {{ if .Vars.suse16cis_gui }}
-  {{ if .Vars.suse16cis_desktop_required }}
     {{ if .Vars.suse16cis_level_1 }}
       {{ if .Vars.suse16cis_rule_1_8_5 }}
 file:
@@ -19,5 +18,4 @@ file:
       - 1.8.5
        {{ end }}
     {{ end }}
-  {{ end }}
 {{ end }}

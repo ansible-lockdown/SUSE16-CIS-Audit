@@ -1,7 +1,6 @@
 ---
 
 {{ if .Vars.suse16cis_gui }}
-  {{ if .Vars.suse16cis_desktop_required }}
     {{ if .Vars.suse16cis_level_1 }}
       {{ if .Vars.suse16cis_rule_1_8_4 }}
 file:
@@ -17,10 +16,9 @@ file:
     - '!/^lock-delay=uint32 ([6-9]|[0-9]{2,})$/'
     meta:
       server: 1
-      workstation: 1
+      workstation: 2
       CIS_ID:
       - 1.8.4
       {{ end }}
     {{ end }}
-  {{ end }}
 {{ end }}

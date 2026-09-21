@@ -38,11 +38,11 @@ If running as part of the ansible playbook, this will pull in the relevant branc
 - e.g. v1.0.0 will pull in branch benchmark-v1.0.0
 
 Devel is normally the latest benchmark version, so maybe different from the version of benchmark you wish to test.
-Details will show in the README as part of the remedation as to the benchmark for the version it is written for.
+Details will show in the README as part of the remediation as to the benchmark for the version it is written for.
 
 ## Usage
 
-Fot the latest information on audit and how it can be used please visit
+For the latest information on audit and how it can be used please visit
 
 [Read the Docs - Audit]
 
@@ -57,6 +57,12 @@ Ability to add your own requirements is available in several sections
 [Enterprise Support]
 
 [MindPoint Group]
+
+## Contributing
+
+Bug reports and feature requests are welcome from everyone, please raise an issue.
+
+Pull requests are accepted from approved contributors only. To be onboarded, join the [Discord Server](https://www.lockdownenterprise.com/discord) and request contributor access. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full process.
 
 ## Links and Further information
 
@@ -74,9 +80,9 @@ README Links
 [Centre For Internet Security]: https://www.cisecurity.org
 [Read the Docs - Audit]: https://ansible-lockdown.readthedocs.io/en/latest/audit/getting-started-audit.html
 
-[goss documentation]: (https://github.com/goss-org/goss/blob/master/README.md)
+[goss documentation]: https://github.com/krameff/goss/blob/master/README.md
 
-[Goss]: https://goss.rocks
+[Goss]: https://github.com/krameff/goss/blob/devel/docs/index.md
 [DISA STIG]: https://public.cyber.mil/stigs
 
 [MindPoint Group]: https://mindpointgroup.com/cybersecurity-consulting/automate/baseline-modernization#GH_LockdownReadMe

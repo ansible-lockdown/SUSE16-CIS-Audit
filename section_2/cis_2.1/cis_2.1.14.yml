@@ -2,12 +2,12 @@
 
 {{ if .Vars.suse16cis_level_1 }}
   {{ if .Vars.suse16cis_rule_2_1_14 }}
-    {{ if not .Vars.suse16cis_rsync_server }}
-      {{ if not .Vars.suse16cis_rsync_mask }}
+    {{ if not .Vars.suse16cis_snmp_server }}
+      {{ if not .Vars.suse16cis_snmp_mask }}
 package:
-  rsync_pkg:
+  snmp_pkg:
     title: 2.1.14 | Ensure snmp services are not in use | pkg removed
-    name: rsync
+    name: net-snmp
     installed: false
     meta:
       server: 1
@@ -15,14 +15,13 @@ package:
       CIS_ID:
       - 2.1.14
       NIST800-53R5:
-      - CM-6
       - CM-7
       {{ end }}
-      {{ if .Vars.suse16cis_rsync_mask }}
+      {{ if .Vars.suse16cis_snmp_mask }}
 file:
-  rsync_service_masked:
+  snmp_service_masked:
     title: 2.1.14 | Ensure snmp services are not in use | masked
-    path: /etc/systemd/system/rsyncd.service
+    path: /etc/systemd/system/snmpd.service
     exists: true
     filetype: symlink
     linked-to: /dev/null
@@ -32,21 +31,6 @@ file:
       CIS_ID:
       - 2.1.14
       NIST800-53R5:
-      - CM-6
-      - CM-7
-    rsync_socket_masked:
-    title: 2.1.14 | Ensure snmp services are not in use | masked
-    path: /etc/systemd/system/rsyncd.socket
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 2.1.14
-      NIST800-53R5:
-      - CM-6
       - CM-7
       {{ end }}
     {{ end }}

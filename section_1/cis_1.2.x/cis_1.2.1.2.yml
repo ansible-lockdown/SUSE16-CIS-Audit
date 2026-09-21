@@ -7,7 +7,8 @@ command:
   gpg_check_global:
     title: 1.2.1.2 | Ensure gpgcheck is configured
     exit-status: 0
-    exec: "if [ `grep -c -E '^\\s*gpgcheck.*0' /etc/zypp/zypp.conf` -ge 1 ]; then echo FAIL; elif [ `grep -c -E '^\\s*gpgcheck.*1' /etc/zypp/zypp.conf` -ge 1 ]; then echo Passed_Check;fi"
+    exec: "grep -Pis -- '^\\h*gpgcheck\\h*=\\h*(0|false|no|off)\\b' /etc/zypp/zypp.conf /usr/etc/zypp/zypp.conf /etc/zypp/zypp.conf.d/*.conf; grep -Pris -- '^\\h*gpgcheck\\h*=\\h*(0|[2-9]|[1-9][0-9]+|false|no|off)\\b' /etc/zypp/repos.d/; true"
+    stdout: ['!/./']
     timeout: {{ .Vars.timeout_ms }}
     meta:
       server: 1

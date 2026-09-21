@@ -1,23 +1,35 @@
 ---
 
 {{ if .Vars.suse16cis_gui }}
-  {{ if .Vars.suse16cis_desktop_required }}
-    {{ if .Vars.suse16cis_level_1 }}
-      {{ if .Vars.suse16cis_rule_1_8_5 }}
+  {{ if .Vars.suse16cis_level_1 }}
+    {{ if .Vars.suse16cis_rule_1_8_5 }}
 file:
-  00-screensaver_lock:
-    title: 1.8.5 | Ensure GDM autorun-never is configured
-    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/locks/00-screensaver_lock
+  gdm_autorun_never:
+    title: 1.8.5 | Ensure GDM autorun-never is configured | keyfile
+    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/00-media-autorun
     exists: true
     contents:
-    - '^\/org\/gnome\/desktop\/session\/idle-delay/'
-    - '^/\/org\/gnome\/desktop\/screensaver\/lock-delay/'
+    - '/^\[org\/gnome\/desktop\/media-handling\]/'
+    - '/^autorun-never=true/'
+    - '!/^autorun-never=false/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.8.5
-       {{ end }}
+      NIST800-53R5: NA
+  gdm_autorun_never_lock:
+    title: 1.8.5 | Ensure GDM autorun-never is configured | lock
+    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/locks/00-autorun_lock
+    exists: true
+    contents:
+    - '/^\/org\/gnome\/desktop\/media-handling\/autorun-never/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.5
+      NIST800-53R5: NA
     {{ end }}
   {{ end }}
 {{ end }}

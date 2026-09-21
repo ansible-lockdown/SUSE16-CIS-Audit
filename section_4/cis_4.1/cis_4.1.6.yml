@@ -18,8 +18,8 @@ command:
       NIST800-53R5:
       - NA
   {{ if .Vars.suse16cis_ipv6_required }}
-    cis_4_1_6_ipv4:
-    title: 4.1.6 | Ensure firewalld loopback source address traffic is configured
+  cis_4_1_6_ipv6:
+    title: 4.1.6 | Ensure firewalld loopback source address traffic is configured | ipv6
     exit-status: 0
     exec: firewall-cmd --zone {{ .Vars.suse16cis_loopback_zone }} --list-rich-rules
     stdout:
@@ -31,7 +31,7 @@ command:
       - 4.1.6
       NIST800-53R5:
       - NA
-      {{ end }}
+  {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

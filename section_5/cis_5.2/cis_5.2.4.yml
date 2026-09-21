@@ -5,7 +5,7 @@
 command:
   nopasswd_sudoers_d:
     title: 5.2.4 | Ensure users must provide password for escalation
-    exec: grep -R NOPASSWD /etc/sudoers /etc/sudoers.d/* | grep -v '.*\:#'
+    exec: grep -R NOPASSWD /etc/sudoers /etc/sudoers.d/* | grep -v '.*\:#'{{ range .Vars.suse16cis_sudoers_exclude_nopasswd_list }} | grep -Ev ':{{ . }}[[:space:]]'{{ end }}
     exit-status:
       or:
       - 0

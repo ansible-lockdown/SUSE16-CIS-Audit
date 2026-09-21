@@ -3,8 +3,9 @@
 {{ if .Vars.suse16cis_level_2 }}
   {{ if .Vars.suse16cis_rule_6_3_3 }}
 file:
-  /etc/aide/aide.conf:
+  aide_audit_tools:
     title: 6.3.3 | Ensure cryptographic mechanisms are used to protect the integrity of audit tools
+    path: {{ .Vars.suse16cis_aide_conf_file }}
     exists: true
     contents:
     - '/usr/sbin/auditctl'
@@ -12,7 +13,6 @@ file:
     - '/usr/sbin/augenrules'
     - '/usr/sbin/aureport'
     - '/usr/sbin/ausearch'
-    - '/usr/sbin/autrace'
     meta:
       server: 2
       workstation: 2

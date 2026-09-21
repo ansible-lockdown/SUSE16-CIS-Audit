@@ -2,31 +2,20 @@
 
 {{ if .Vars.suse16cis_level_1 }}
   {{ if .Vars.suse16cis_rule_1_7_4 }}
-file:
-  motd_permissions:
+command:
+  pam_motd_configured:
     title: 1.7.4 | Ensure pam_motd is configured
-    path: /etc/motd
-    exists:
-      or:
-      - false
-      - true
-    mode:
-      or:
-       - '0644'
-       - '0640'
-       - '0600'
-       - '0444'
-       - '0440'
-       - '0400'
-    owner: root
-    group: root
+    exec: |
+      grep -Psi '^\h*session\h+(required|optional)\h+pam_motd\.so\b.*\bmotd=' \
+        /etc/pam.d/sshd /etc/pam.d/login /etc/pam.d/su /etc/pam.d/gdm-password 2>/dev/null || true
+    exit-status: 0
+    stdout: ['!/./']
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.7.4
       NIST800-53R5:
-      - AC-3
-      - MP-2
+      - SC-8
   {{ end }}
 {{ end }}

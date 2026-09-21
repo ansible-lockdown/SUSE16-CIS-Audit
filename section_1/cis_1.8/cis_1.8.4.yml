@@ -1,26 +1,38 @@
 ---
 
 {{ if .Vars.suse16cis_gui }}
-  {{ if .Vars.suse16cis_desktop_required }}
-    {{ if .Vars.suse16cis_level_1 }}
-      {{ if .Vars.suse16cis_rule_1_8_4 }}
+  {{ if .Vars.suse16cis_level_1 }}
+    {{ if .Vars.suse16cis_rule_1_8_4 }}
 file:
-  00-screensaver:
-    title: 1.8.4 | Ensure GDM automount is configured
-    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/00-screensaver
+  gdm_media_automount:
+    title: 1.8.4 | Ensure GDM automount is configured | keyfile
+    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/00-media-automount
     exists: true
     contents:
-    - '/^[org/gnome/desktop/session]/'
-    - '/^idle-delay=uint32 (1|[1-9]|[1-8][0-9]{1,2}|900)$/'
-    - '!/^idle-delay=uint32 (90[1-9]|9[1-9][0-9]|1[0-9]{3,})$/'
-    - '/^lock-delay=uint32 [0-5]$/'
-    - '!/^lock-delay=uint32 ([6-9]|[0-9]{2,})$/'
+    - '/^\[org\/gnome\/desktop\/media-handling\]/'
+    - '/^automount=false/'
+    - '/^automount-open=false/'
+    - '!/^automount=true/'
+    - '!/^automount-open=true/'
     meta:
       server: 1
-      workstation: 1
+      workstation: 2
       CIS_ID:
       - 1.8.4
-      {{ end }}
+      NIST800-53R5: NA
+  gdm_media_automount_lock:
+    title: 1.8.4 | Ensure GDM automount is configured | lock
+    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/locks/00-automount_lock
+    exists: true
+    contents:
+    - '/^\/org\/gnome\/desktop\/media-handling\/automount/'
+    - '/^\/org\/gnome\/desktop\/media-handling\/automount-open/'
+    meta:
+      server: 1
+      workstation: 2
+      CIS_ID:
+      - 1.8.4
+      NIST800-53R5: NA
     {{ end }}
   {{ end }}
 {{ end }}

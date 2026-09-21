@@ -45,9 +45,9 @@ file:
 command:
   sshd_config_d_file:
     title: 5.1.1 | Ensure access to sshd_config files is configured
-    exec: find /etc/ssh/sshd_config.d  /usr/etc/ssh/sshd_config.d \( -perm /077 -o ! -user root -o ! -group root \)
+    exec: find /etc/ssh/sshd_config.d /usr/etc/ssh/sshd_config.d -xdev -type f -name '*.conf' \( -perm /077 -o ! -user root -o ! -group root \) 2>/dev/null
     exit-status: 0
-    stdout: '!/.*/'
+    stdout: ['!/./']
     meta:
       server: 1
       workstation: 1

@@ -2,12 +2,12 @@
 
 {{ if .Vars.suse16cis_level_1 }}
   {{ if .Vars.suse16cis_rule_2_1_17 }}
-    {{ if not .Vars.suse16cis_tftp_server }}
-      {{ if not .Vars.suse16cis_tftp_mask }}
+    {{ if not .Vars.suse16cis_squid_server }}
+      {{ if not .Vars.suse16cis_squid_mask }}
 package:
-  tftp_pkg:
+  squid_pkg:
     title: 2.1.17 | Ensure web proxy server services are not in use | pkg removed
-    name: tftp-server
+    name: squid
     installed: false
     meta:
       server: 1
@@ -15,13 +15,14 @@ package:
       CIS_ID:
       - 2.1.17
       NIST800-53R5:
+      - CM-6
       - CM-7
       {{ end }}
-      {{ if .Vars.suse16cis_tftp_mask }}
+      {{ if .Vars.suse16cis_squid_mask }}
 file:
-  tftp_service_masked:
+  squid_service_masked:
     title: 2.1.17 | Ensure web proxy server services are not in use | masked
-    path: /etc/systemd/system/tftp.service
+    path: /etc/systemd/system/squid.service
     exists: true
     filetype: symlink
     linked-to: /dev/null
@@ -31,19 +32,7 @@ file:
       CIS_ID:
       - 2.1.17
       NIST800-53R5:
-      - CM-7
-  tftp_socket_masked:
-    title: 2.1.17 | Ensure web proxy server services are not in use | masked
-    path: /etc/systemd/system/tftp.socket
-    exists: true
-    filetype: symlink
-    linked-to: /dev/null
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 2.1.17
-      NIST800-53R5:
+      - CM-6
       - CM-7
       {{ end }}
     {{ end }}

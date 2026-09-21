@@ -1,21 +1,37 @@
 ---
 
-{{ if not .Vars.suse16cis_gui }}
-  {{ if not .Vars.suse16cis_desktop_required }}
-    {{ if .Vars.suse16cis_level_2 }}
-      {{ if .Vars.suse16cis_rule_1_8_1 }}
-package:
-  gdm_removed:
-    title: 1.8.1 | Ensure GDM login banner is configured
-    installed: false
-    name: gdm
+{{ if .Vars.suse16cis_gui }}
+  {{ if .Vars.suse16cis_level_1 }}
+    {{ if .Vars.suse16cis_rule_1_8_1 }}
+file:
+  gdm_banner_message:
+    title: 1.8.1 | Ensure GDM login banner is configured | keyfile
+    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/00-banner-message
+    exists: true
+    contents:
+    - '/^\[org\/gnome\/login-screen\]/'
+    - '/^banner-message-enable=true/'
+    - '!/^banner-message-enable=false/'
+    - '/^banner-message-text=/'
     meta:
-      server: 2
-      workstation: NA
+      server: 1
+      workstation: 1
       CIS_ID:
       - 1.8.1
       NIST800-53R5: NA
-      {{ end}}
+  gdm_banner_message_lock:
+    title: 1.8.1 | Ensure GDM login banner is configured | lock
+    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/locks/00-banner-message_lock
+    exists: true
+    contents:
+    - '/^\/org\/gnome\/login-screen\/banner-message-enable/'
+    - '/^\/org\/gnome\/login-screen\/banner-message-text/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.1
+      NIST800-53R5: NA
     {{ end }}
   {{ end }}
 {{ end }}

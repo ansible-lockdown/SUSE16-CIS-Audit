@@ -2,17 +2,14 @@
 
 {{ if .Vars.suse16cis_level_1 }}
   {{ if .Vars.suse16cis_rule_5_1_21 }}
-file:
+command:
   ssh_userenv:
-    title: 5.1.21 | Ensure sshd PermitUserEnvironment is disabled
-    path: /etc/ssh/sshd_config
-    exists:
-      or:
-      - true
-      - false
-    contents:
-    - '/^(?i)PermitUserEnvironment no/'
-    - '!/^(?i)PermitUserEnvironment yes/'
+    title: 5.1.21 | Ensure sshd PermitUserEnvironment is disabled | live
+    exec: "sshd -T 2>/dev/null | grep -i '^permituserenvironment' || true"
+    exit-status: 0
+    stdout:
+    - '/(?i)PermitUserEnvironment no/'
+    - '!/(?i)PermitUserEnvironment yes/'
     meta:
       server: 1
       workstation: 1

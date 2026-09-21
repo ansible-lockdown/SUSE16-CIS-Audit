@@ -9,7 +9,7 @@ command:
       or:
       - 0
       - 1
-    exec: find -type f /run/systemd/system /etc/systemd/system /usr/lib/systemd/system -name '*.timer' \( ! -user root -o ! -group root -o -perm /133 \) 2>/dev/null
+    exec: find /run/systemd/system /etc/systemd/system /usr/lib/systemd/system -type f -name '*.timer' \( ! -user root -o ! -group root -o -perm /133 \) 2>/dev/null || true
     stdout:
     - '!/^.*/'
     meta:

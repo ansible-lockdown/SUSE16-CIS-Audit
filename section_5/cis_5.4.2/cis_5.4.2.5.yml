@@ -8,7 +8,8 @@ command:
     exec: "/bin/bash --login -c 'env | grep ^PATH=' | sed -e 's/PATH=//' -e 's/::/:/' -e 's/:$//' -e 's/:/\\n/g'"
     exit-status: 0
     stdout:
-    - '!/\\./'
+    - '!/^\.$/'
+    - '!/^$/'
     meta:
       server: 1
       workstation: 1

@@ -1,21 +1,23 @@
 ---
 
 {{ if .Vars.suse16cis_gui }}
-    {{ if .Vars.suse16cis_level_2 }}
-      {{ if .Vars.suse16cis_rule_1_8_7 }}
-file:
-  00-media-autorun_override:
+  {{ if .Vars.suse16cis_level_2 }}
+    {{ if .Vars.suse16cis_rule_1_8_7 }}
+command:
+  gdm_xwayland_disabled:
     title: 1.8.7 | Ensure Xwayland is configured
-    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/00-media-autorun
-    exists: true
-    contents:
-    - '^/\/org\/gnome\/desktop\/media-handling\/automount/'
-    - '^/\/org\/gnome\/desktop\/media-handling\/automount-open/'
+    exec: |
+      awk '/\[daemon\]/{f=1;next} /^\[/{f=0} f && /^[[:space:]]*WaylandEnable[[:space:]]*=/{print}' /etc/gdm/custom.conf 2>/dev/null
+    exit-status: 0
+    stdout:
+    - '/WaylandEnable\s*=\s*false/'
+    - '!/WaylandEnable\s*=\s*true/'
     meta:
       server: 2
       workstation: 2
       CIS_ID:
       - 1.8.7
-      {{ end }}
+      NIST800-53R5: NA
     {{ end }}
+  {{ end }}
 {{ end }}

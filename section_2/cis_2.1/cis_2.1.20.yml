@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.suse16cis_level_2 }}
+  {{ if .Vars.suse16cis_rule_2_1_20 }}
+    {{ if not .Vars.suse16cis_xwindow_server }}
+package:
+  xwindow_pkg:
+    title: 2.1.20 | Ensure X window server services are not in use | pkg removed
+    name: xwayland
+    installed: false
+    meta:
+      server: 2
+      workstation: NA
+      CIS_ID:
+      - 2.1.20
+      NIST800-53R5:
+      - CM-11
+    {{ end }}
+  {{ end }}
+{{ end }}

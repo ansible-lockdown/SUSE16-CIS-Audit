@@ -4,7 +4,7 @@
   {{ if .Vars.suse16cis_level_2 }}
     {{ if .Vars.suse16cis_rule_2_2_2 }}
 package:
-  {{- range mkSlice "openldap2-client" "openldap2_5" }}
+  {{- range mkSlice "openldap2_6-client" }}
   {{ . }}_removed:
     title: 2.2.2 | Ensure ldap client is not installed | {{ . }} package
     installed: false

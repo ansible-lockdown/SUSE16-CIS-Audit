@@ -2,15 +2,12 @@
 
 {{ if .Vars.suse16cis_level_1 }}
   {{ if .Vars.suse16cis_rule_5_1_16 }}
-file:
+command:
   sshd_authtries:
-    title: 5.1.16 | Ensure sshd MaxAuthTries is configured
-    path: /etc/ssh/sshd_config
-    exists:
-      or:
-      - true
-      - false
-    contents:
+    title: 5.1.16 | Ensure sshd MaxAuthTries is configured | live
+    exec: "sshd -T 2>/dev/null | grep -i '^maxauthtries' || true"
+    exit-status: 0
+    stdout:
     - '/(?i)maxauthtries [1-4]/'
     - '!/(?i)maxauthtries ([5-9]|[1-9]{2,})/'
     meta:

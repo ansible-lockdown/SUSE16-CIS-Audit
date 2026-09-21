@@ -8,7 +8,7 @@ file:
     path: /etc/crypto-policies/state/CURRENT.pol
     exists: true
     contents:
-    - '!/^(?i)cipher@/(lib|open)ssh(-server|-client)?\s*=\s*([^#\n\r]+)?-chacha-poly1305\b'
+    - '!/(?i)^cipher@(lib|open)ssh(-server|-client)?\s*=\s*([^#\n\r]+)?-chacha20-poly1305\b/'
     meta:
       server: 1
       workstation: 1

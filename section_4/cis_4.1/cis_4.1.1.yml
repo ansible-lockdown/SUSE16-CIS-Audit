@@ -45,8 +45,8 @@ service:
   iptables_stopped:
     title: 4.1.1 | Ensure firewalld is installed | iptables stopped
     name: iptables
-    enabled: true
-    running: true
+    enabled: false
+    running: false
     meta:
       server: 1
       workstation: 1

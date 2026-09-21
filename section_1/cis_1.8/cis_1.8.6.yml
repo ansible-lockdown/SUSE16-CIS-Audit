@@ -1,24 +1,21 @@
 ---
 
 {{ if .Vars.suse16cis_gui }}
-    {{ if .Vars.suse16cis_level_1 }}
-      {{ if .Vars.suse16cis_rule_1_8_6 }}
-file:
-  00-media-automount_disable:
+  {{ if .Vars.suse16cis_level_1 }}
+    {{ if .Vars.suse16cis_rule_1_8_6 }}
+command:
+  gdm_xdmcp_disabled:
     title: 1.8.6 | Ensure XDMCP is not enabled
-    path: /etc/dconf/db/{{ .Vars.suse16cis_dconf_db_name }}.d/00-media-automount
-    exists: true
-    contents:
-    - '/^[org/gnome/desktop/media-handling]/'
-    - '/^automount=false/'
-    - '/^automount-open=false/'
-    - '!/^automount=true/'
-    - '!/^automount-open=true/'
+    exec: |
+      awk '/\[xdmcp\]/{f=1;next} /^\[/{f=0} f && /^[[:space:]]*Enable[[:space:]]*=[[:space:]]*true/{print}' /etc/gdm/custom.conf 2>/dev/null
+    exit-status: 0
+    stdout: ['!/./']
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.8.6
-      {{ end }}
+      NIST800-53R5: NA
     {{ end }}
+  {{ end }}
 {{ end }}

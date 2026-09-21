@@ -8,7 +8,7 @@ command:
     exit-status: 0
     exec: "modprobe -n -v cramfs | grep -E '(cramfs|install)'"
     stdout:
-    - '/install .*unblacklist cramfs; /sbin/modprobe --ignore-install cramfs/'
+    - '/install /bin/(false|true)/'
     meta:
       server: 1
       workstation: 1

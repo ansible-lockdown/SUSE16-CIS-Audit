@@ -8,7 +8,7 @@ command:
     exit-status: 0
     exec: "modprobe -n -v jffs2 | grep -E '(jffs2|install)'"
     stdout:
-    - '/install .*unblacklist jffs2; /sbin/modprobe --ignore-install jffs2/'
+    - '/install /bin/(false|true)/'
     meta:
       server: 1
       workstation: 1

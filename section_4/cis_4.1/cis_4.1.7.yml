@@ -7,9 +7,8 @@ command:
   cis_4_1_7:
     title: 4.1.7 | Ensure firewalld services and ports are configured
     exit-status: 0
-    exec: "firewall-cmd --list-all"
-    stdout:
-      - '/.+/'
+    exec: echo "Manual check - review 'firewall-cmd --list-all' and confirm only approved services and ports are open"
+    stdout: []
     meta:
       server: 1
       workstation: 1

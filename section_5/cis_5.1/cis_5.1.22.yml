@@ -2,17 +2,14 @@
 
 {{ if .Vars.suse16cis_level_1 }}
   {{ if .Vars.suse16cis_rule_5_1_22 }}
-file:
+command:
   ssh_usepam:
-    title: 5.1.22 | Ensure sshd UsePAM is enabled
-    path: /etc/ssh/sshd_config
-    exists:
-      or:
-      - true
-      - false
-    contents:
+    title: 5.1.22 | Ensure sshd UsePAM is enabled | live
+    exec: "sshd -T 2>/dev/null | grep -i '^usepam' || true"
+    exit-status: 0
+    stdout:
     - '/(?i)UsePAM yes/'
-    - '!/(?i)^UsePAM no/'
+    - '!/(?i)UsePAM no/'
     meta:
       server: 1
       workstation: 1

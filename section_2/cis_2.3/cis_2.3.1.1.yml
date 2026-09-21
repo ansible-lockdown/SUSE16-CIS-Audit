@@ -69,5 +69,34 @@ file:
       - AU-3
       - AU-12
     {{ end }}
+  {{ if eq .Vars.suse16cis_time_sync_tool "chronyd" }}
+command:
+  chrony_time_source:
+    title: 2.3.1.1 | Ensure chrony is configured | remote server
+    exec: "grep -Ers '^\\s*(server|pool)\\s+\\S+' /etc/chrony.conf /etc/chrony.d/ 2>/dev/null || true"
+    exit-status: 0
+    stdout:
+    - '/^.*:?\s*(server|pool)\s+\S+/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.1.1
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+  chrony_runs_as_chrony_user:
+    title: 2.3.1.1 | Ensure chrony is configured | OPTIONS -u chrony
+    exec: "grep -Es '^\\s*OPTIONS=' /etc/sysconfig/chronyd 2>/dev/null || true"
+    exit-status: 0
+    stdout:
+    - '/-u\s+chrony/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.1.1
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+  {{ end }}
   {{ end }}
 {{ end }}

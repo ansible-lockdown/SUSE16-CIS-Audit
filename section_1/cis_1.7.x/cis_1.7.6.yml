@@ -2,21 +2,13 @@
 
 {{ if .Vars.suse16cis_level_1 }}
   {{ if .Vars.suse16cis_rule_1_7_6 }}
-file:
-  etc_issue_net_permissions:
+command:
+  motd_access_configured:
     title: 1.7.6 | Ensure access to /etc/motd is configured
-    path: /etc/issue.net
-    exists: true
-    mode:
-      or:
-       - '0644'
-       - '0640'
-       - '0600'
-       - '0444'
-       - '0440'
-       - '0400'
-    owner: root
-    group: root
+    exec: |
+      find /etc/motd -maxdepth 0 \( -perm /0133 -o ! -user root -o ! -group root \) 2>/dev/null || true
+    exit-status: 0
+    stdout: ['!/./']
     meta:
       server: 1
       workstation: 1

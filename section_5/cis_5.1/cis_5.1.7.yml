@@ -5,7 +5,7 @@
 command:
   sshd_clientalive_live:
     title: 5.1.7 | Ensure sshd ClientAliveInterval and ClientAliveCountMax are configured | live
-    exec: sshd -T | grep clientalive
+    exec: sshd -T | grep -i '^clientalive'
     exit-status:
       or:
       - 0

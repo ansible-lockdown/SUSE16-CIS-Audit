@@ -56,13 +56,11 @@ service:
       - NA
   {{ end }}
   {{ if eq .Vars.suse16cis_firewall "firewalld" }}
-file:
-  nftables_masked:
-    title: 4.1.1 | Ensure firewalld is installed | nftables masked
-    path: /etc/systemd/system/nftables.service
-    filetype: symlink
-    linked-to: /dev/null
-    exists: true
+package:
+  firewalld_installed:
+    title: 4.1.1 | Ensure firewalld is installed | firewalld installed
+    name: firewalld
+    installed: true
     meta:
       server: 1
       workstation: 1

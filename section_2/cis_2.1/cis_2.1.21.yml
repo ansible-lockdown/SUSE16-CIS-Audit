@@ -16,15 +16,12 @@ command:
       - 2.1.21
       NIST800-53R5:
       - CM-7
-file:
-  postfix_main_cf:
+  postfix_inet_interfaces:
     title: 2.1.21 | Ensure mail transfer agents are configured for local-only mode | inet_interfaces
-    path: /etc/postfix/main.cf
-    exists: true
-    contents:
-    - '/^inet_interfaces\s*=\s*loopback-only/'
-    - '!/^inet_interfaces\s*=\s*all/'
-    - '!/^(?i)inet_interfaces\s*=\s*ipv4/'
+    exit-status: 0
+    exec: "if command -v postconf >/dev/null 2>&1; then postconf inet_interfaces; else echo 'postfix not installed'; fi"
+    stdout:
+    - '/(?i)(postfix not installed|^inet_interfaces\s*=\s*(loopback-only|localhost|127\.0\.0\.1)\s*$)/'
     meta:
       server: 1
       workstation: 1

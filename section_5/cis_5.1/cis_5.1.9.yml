@@ -11,8 +11,8 @@ command:
       - 0
       - 1
     stdout:
-    - '/^gssapiauthentication no/'
-    - '!/^gssapiauthentication yes/'
+    - '/(?i)^gssapiauthentication no/'
+    - '!/(?i)^gssapiauthentication yes/'
     meta:
       server: 2
       workstation: 1

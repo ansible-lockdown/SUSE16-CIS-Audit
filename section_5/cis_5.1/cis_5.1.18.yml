@@ -9,7 +9,7 @@ command:
     exit-status: 0
     stdout:
     - '/(?i)MaxSessions ([1-9]|10)/'
-    - '!/MaxSessions (1[1-9]|[2-9][0-9]|[1-9]{3,})/'
+    - '!/(?i)MaxSessions (1[1-9]|[2-9][0-9]|[1-9]{3,})/'
     meta:
       server: 1
       workstation: 1

@@ -6,10 +6,10 @@ command:
   ssh_listen_address:
     title: 5.1.24 | Ensure sshd ListenAddress is configured
     exit-status: 0
-    exec: "sshd -T | grep listenaddress"
+    exec: "sshd -T | grep -i '^listenaddress'"
     stdout:
-      - '!/listenaddress 0\.0\.0\.0/'
-      - '!/listenaddress ::/'
+      - '!/(?i)^listenaddress 0\.0\.0\.0/'
+      - '!/(?i)^listenaddress \[?::\]?(:|$)/'
     meta:
       server: 2
       workstation: 2

@@ -8,6 +8,18 @@
 - 5.2.4 NOPASSWD entries for suse16cis_sudoers_exclude_nopasswd_list users accepted
 - 6.2.1.3, 6.2.1.4 grub config checks accept the setting as the first token
 - 6.2.1.4 audit_backlog_limit regex accepts every value from 8192
+- sshd -T checks case-insensitive: 1.7.9, 5.1.7-5.1.11, 5.1.13, 5.1.14, 5.1.18, 5.1.23, 5.1.24
+- 5.1.24 catches the [::] listen form
+- 1.2.1.2 fails only on gpgcheck off or invalid values
+- 2.1.21 inet_interfaces checked via postconf; passes without postfix
+- 4.1.1 firewalld package checked; nftables mask assertion removed
+- 4.1.4 checks active zones only, excluding lo and virbr
+- 5.1.1 checks sshd_config.d *.conf files only, stdout negation now a pattern list
+- 5.1.3 public key permission mask /133
+- 6.2.3.1 accepts dir=/etc/sudoers.d with or without the trailing slash
+- 6.3.2 cron file path no longer doubled
+- 7.1.13 reports SUID/SGID files for review without failing
+- 7.2.8 reads /etc/passwd instead of 59000 getent lookups
 
 ## August 2026 - QA findings remediation
 

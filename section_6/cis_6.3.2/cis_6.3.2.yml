@@ -4,7 +4,7 @@
   {{ if .Vars.suse16cis_rule_6_3_2 }}
     {{ if eq .Vars.suse16cis_aide_scan "cron" }}
 file:
-  /etc/cron.d/{{ .Vars.suse16cis_aide_cron_file }}:
+  {{ .Vars.suse16cis_aide_cron_file }}:
     title: 6.3.2 | Ensure filesystem integrity is regularly checked | cron
     exists: true
     meta:

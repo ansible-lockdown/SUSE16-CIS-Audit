@@ -6,7 +6,7 @@ command:
   sshd_banner_file_perms:
     title: 1.7.9 | Ensure access to sshd warning banner is configured
     exit-status: 0
-    exec: "stat -Lc '%a %U %G' $(sshd -T 2>/dev/null | awk '/^banner /{print $2}')"
+    exec: "stat -Lc '%a %U %G' $(sshd -T 2>/dev/null | awk 'tolower($1)==\"banner\" {print $2}')"
     stdout:
     - '/^[0-6][04][04] root root$/'
     meta:

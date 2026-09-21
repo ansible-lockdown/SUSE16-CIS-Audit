@@ -8,7 +8,7 @@ command:
     exec: grep audit= /etc/default/grub
     exit-status: 0
     stdout:
-    - '/^GRUB_CMDLINE_LINUX=.*\saudit=1.*/'
+    - '/^GRUB_CMDLINE_LINUX=.*[\s"]audit=1([\s"]|$)/'
     meta:
       server: 2
       workstation: 2

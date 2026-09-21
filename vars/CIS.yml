@@ -95,7 +95,7 @@ suse16cis_rule_1_2_1_1: true
 suse16cis_rule_1_2_1_2: true
 suse16cis_rule_1_2_1_3: true
 suse16cis_rule_1_2_1_4: true
-suse16cis_rule_1_2_1_5: false
+suse16cis_rule_1_2_1_5: true
 # 1.2.2 Configure Package updates
 suse16cis_rule_1_2_2_1: true
 
@@ -300,7 +300,7 @@ suse16cis_rule_5_1_20: true
 suse16cis_rule_5_1_21: true
 suse16cis_rule_5_1_22: true
 suse16cis_rule_5_1_23: true
-suse16cis_rule_5_1_24: false
+suse16cis_rule_5_1_24: true
 
 # 5.2 Configure privilege escalation
 suse16cis_rule_5_2_1: true
@@ -386,7 +386,7 @@ suse16cis_rule_6_1_2_5: true
 suse16cis_rule_6_1_2_6: true
 suse16cis_rule_6_1_2_7: true
 suse16cis_rule_6_1_2_8: true
-suse16cis_rule_6_1_2_9: false
+suse16cis_rule_6_1_2_9: true
 suse16cis_rule_6_1_2_10: false
 suse16cis_rule_6_1_2_11: false
 
@@ -457,7 +457,8 @@ suse16cis_rule_6_2_4_10: true
 ## 6.3 Configure System Integrity (AIDE)
 suse16cis_rule_6_3_1: true
 suse16cis_rule_6_3_2: true
-suse16cis_rule_6_3_3: false
+suse16cis_aide_conf_file: /etc/aide.conf
+suse16cis_rule_6_3_3: true
 
 ## Section 7
 # 7.1 System File Permissions
@@ -528,7 +529,6 @@ suse16cis_disable_dynamic_motd: true
 # If set to true and finds gui installed below is will run CIS
 # if set to false it will remove the gdm package and disable the service
 # then skip al the controls in 1.8.x
-suse16cis_desktop_required: false
 ## Graphical/Gnome interface installed
 suse16cis_gui: false
 
@@ -546,14 +546,14 @@ suse16cis_dconf_db_name: "{{ prelim_dconf_db | default('local') }}"
 suse16cis_time_sync_tool: "chronyd"
 
 ## Controls 2.3.x - Configure time pools & servers for chrony and timesyncd
-# The following variable represents a list of of time server pools used
+# The following variable represents a list of time server pools used
 # for configuring chrony and timesyncd.
 # Each list item contains two settings, `name` (the domain name of the pool) and synchronization `options`.
 # The default setting for the `options` is `iburst maxsources 4` -- please refer to the documentation
 # of the time synchronization mechanism you are using.
 suse16cis_time_pool_name: time.nist.gov
 
-# The following variable represents a list of of time servers used
+# The following variable represents a list of time servers used
 # for configuring chrony and timesyncd
 # Each list item contains two settings, `name` (the domain name of the server) and synchronization `options`.
 # The default setting for the `options` is `iburst` -- please refer to the documentation
@@ -741,6 +741,11 @@ suse16cis_sshd_deny_groups:
 suse16cis_sshd_client_alive_interval: 15
 suse16cis_sshd_client_alive_count_max: 3
 
+## Control 5.2.4
+# Users whose NOPASSWD sudo rules are accepted. The remediation role passes its
+# suse16cis_sudoers_exclude_nopasswd_list here; empty means no exceptions.
+suse16cis_sudoers_exclude_nopasswd_list: []
+
 ## Control 5.2.7
 # This variable determines the group of users that are allowed to use the su command.
 # one to specify a user group that is allowed to use the "su" command.
@@ -835,7 +840,7 @@ suse16cis_journald_runtimekeepfree: 100G
 # Current variable governs the settings for log retention(how long the log files will be kept).
 # Thus, it specifies the maximum time to store entries in a single journal
 # file before rotating to the next one. Set to 0 to turn off this feature.
-# The given values is interpreted as seconds, unless suffixed with the units
+# The given value is interpreted as seconds, unless suffixed with the units
 # `year`, `month`, `week`, `day`, `h` or `m` to override the default time unit of seconds.
 # Values are Xm, Xh, Xday, Xweek, Xmonth, Xyear, for example 2week is two weeks
 # ATTENTION: Uncomment the keyword below when values are set!

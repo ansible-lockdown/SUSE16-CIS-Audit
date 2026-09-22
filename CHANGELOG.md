@@ -20,6 +20,7 @@
 - 6.3.2 cron file path no longer doubled
 - 7.1.13 reports SUID/SGID files for review without failing
 - 7.2.8 reads /etc/passwd instead of 59000 getent lookups
+- 1.1.2.1.2 to 1.1.2.1.4 persistent options read from fstab or the tmp.mount unit
 
 ## August 2026 - QA findings remediation
 
